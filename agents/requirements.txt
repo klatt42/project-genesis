@@ -1,0 +1,27 @@
+# Phase 2 Autonomous Agents - Python Dependencies
+
+# HTTP client for Archon API integration
+httpx>=0.27.0
+
+# Async support
+asyncio-base>=3.11  # Python 3.11+ has asyncio built-in
+
+# Logging and monitoring
+python-json-logger>=2.0.7
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+
+# Type checking
+mypy>=1.8.0
+
+# Code quality
+ruff>=0.1.0
+
+# Optional: Progress tracking
+tqdm>=4.66.0
+
+# Optional: Performance monitoring
+psutil>=5.9.0
