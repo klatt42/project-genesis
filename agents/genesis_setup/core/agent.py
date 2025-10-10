@@ -218,10 +218,54 @@ class GenesisSetupAgent(BaseAgent):
             project_id: Archon project ID
 
         Returns:
-            Repository URL
+            Repository URL or path
         """
-        # TODO: Implement repository initialization
-        return f"https://github.com/user/genesis-{project_id}"
+        import subprocess
+        from pathlib import Path
+
+        # Determine project directory
+        project_name = f"genesis-{project_type}-{project_id}"
+        project_path = Path.cwd() / "generated" / project_name
+
+        # Create project directory
+        project_path.mkdir(parents=True, exist_ok=True)
+        self._log(f"Created project directory: {project_path}")
+
+        # Check if already a git repo
+        git_dir = project_path / ".git"
+        if not git_dir.exists():
+            # Initialize git repository
+            subprocess.run(
+                ["git", "init"],
+                cwd=project_path,
+                check=True,
+                capture_output=True
+            )
+            self._log("Initialized Git repository")
+
+            # Create initial commit
+            readme_path = project_path / "README.md"
+            readme_path.write_text(f"# {project_name}\n\nGenesis {project_type} project\n")
+
+            subprocess.run(
+                ["git", "add", "README.md"],
+                cwd=project_path,
+                check=True,
+                capture_output=True
+            )
+
+            subprocess.run(
+                ["git", "commit", "-m", "Initial commit: Genesis project setup"],
+                cwd=project_path,
+                check=True,
+                capture_output=True
+            )
+            self._log("Created initial commit")
+        else:
+            self._log("Git repository already exists")
+
+        # Return local path (could be GitHub URL in production)
+        return str(project_path)
 
     async def _configure_services(
         self,

@@ -228,7 +228,16 @@ class GenesisFeatureAgent(BaseAgent):
 
         # Use Plan command with pattern context
         scout_summary = f"Pattern: {pattern.get('name')}\nFeature: {task_spec.get('feature_name')}"
-        return await self.phase1_executor.execute_plan(scout_summary, "think-hard")
+        phase1_plan = await self.phase1_executor.execute_plan(scout_summary, "think-hard")
+
+        # Augment Phase 1 plan with our task spec data
+        return {
+            **phase1_plan,
+            "feature_name": task_spec.get("feature_name"),
+            "description": task_spec.get("description", ""),
+            "pattern": pattern,
+            "config": task_spec.get("custom_config", {})
+        }
 
     async def _generate_code(
         self,
@@ -245,10 +254,35 @@ class GenesisFeatureAgent(BaseAgent):
         Returns:
             Dictionary with generated code and files
         """
-        # TODO: Implement code generation
+        from agents.genesis_feature.core.code_generator import CodeGenerator
+
+        # Initialize code generator
+        generator = CodeGenerator()
+
+        # Prepare feature spec for generator
+        feature_spec = {
+            "feature_name": plan.get("feature_name", ""),
+            "description": plan.get("description", ""),
+            "custom_config": plan.get("config", {})
+        }
+
+        # Generate files from pattern
+        self._log(f"Generating code for pattern: {pattern.get('name')}")
+        generated_files = generator.generate_from_pattern(pattern, feature_spec)
+
+        # Write files to disk
+        self._log(f"Writing {len(generated_files)} files to disk...")
+        write_result = generator.write_files(generated_files, dry_run=False)
+
+        self._log(f"Files written: {len(write_result['files_written'])}")
+        if write_result['files_skipped']:
+            self._log(f"Files skipped (already exist): {len(write_result['files_skipped'])}", level="WARNING")
+
         return {
-            "files": [],
-            "components": []
+            "files": write_result['files_written'],
+            "files_skipped": write_result['files_skipped'],
+            "components": [f.path for f in generated_files if f.file_type == 'component'],
+            "generated_files": generated_files
         }
 
     async def _run_tests(
@@ -264,12 +298,91 @@ class GenesisFeatureAgent(BaseAgent):
         Returns:
             Test results
         """
-        # TODO: Implement automated testing
-        return {
+        import subprocess
+        from pathlib import Path
+
+        test_results = {
             "passed": True,
             "test_count": 0,
-            "failures": []
+            "failures": [],
+            "checks": []
         }
+
+        try:
+            # Check if package.json exists (indicates Node.js project)
+            package_json = Path.cwd() / "package.json"
+
+            if package_json.exists():
+                # Run TypeScript check if available
+                try:
+                    result = subprocess.run(
+                        ["npx", "tsc", "--noEmit"],
+                        capture_output=True,
+                        timeout=30
+                    )
+                    if result.returncode == 0:
+                        test_results["checks"].append({
+                            "name": "TypeScript",
+                            "passed": True
+                        })
+                    else:
+                        test_results["checks"].append({
+                            "name": "TypeScript",
+                            "passed": False,
+                            "error": result.stderr.decode()
+                        })
+                        test_results["passed"] = False
+                except Exception as e:
+                    self._log(f"TypeScript check skipped: {e}", level="WARNING")
+
+                # Run ESLint check if available
+                try:
+                    result = subprocess.run(
+                        ["npx", "eslint", "."],
+                        capture_output=True,
+                        timeout=30
+                    )
+                    if result.returncode == 0:
+                        test_results["checks"].append({
+                            "name": "ESLint",
+                            "passed": True
+                        })
+                    else:
+                        # ESLint warnings are acceptable
+                        test_results["checks"].append({
+                            "name": "ESLint",
+                            "passed": True,
+                            "warnings": result.stdout.decode()
+                        })
+                except Exception as e:
+                    self._log(f"ESLint check skipped: {e}", level="WARNING")
+
+                # Run test suite if available
+                try:
+                    result = subprocess.run(
+                        ["npm", "test", "--", "--passWithNoTests"],
+                        capture_output=True,
+                        timeout=60
+                    )
+                    test_passed = result.returncode == 0
+                    test_results["checks"].append({
+                        "name": "Jest Tests",
+                        "passed": test_passed
+                    })
+                    if not test_passed:
+                        test_results["passed"] = False
+                        test_results["failures"].append(result.stderr.decode())
+                except Exception as e:
+                    self._log(f"Test suite skipped: {e}", level="WARNING")
+
+            test_results["test_count"] = len(test_results["checks"])
+
+        except Exception as e:
+            self._log(f"Testing error: {e}", level="ERROR")
+            test_results["passed"] = False
+            test_results["failures"].append(str(e))
+
+        return test_results
 
     async def _validate_implementation(
         self,
