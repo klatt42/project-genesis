@@ -162,9 +162,24 @@ class GenesisSetupAgent(BaseAgent):
         Returns:
             Project type: "landing_page" or "saas_app"
         """
-        # TODO: Implement intelligent project type detection
-        # For now, return default
-        return "saas_app"
+        from agents.genesis_setup.core.project_detector import ProjectTypeDetector
+
+        detector = ProjectTypeDetector()
+
+        # Extract description from scout results
+        description = scout_result.get("input", "")
+
+        # Detect project type
+        detection_result = detector.detect_project_type(
+            description,
+            scout_results=scout_result
+        )
+
+        self._log(f"Detected project type: {detection_result['project_type'].value}")
+        self._log(f"Confidence: {detection_result['confidence']:.0%}")
+        self._log(f"Reasoning: {detection_result['reasoning']}")
+
+        return detection_result['project_type'].value
 
     async def _create_archon_project(
         self,

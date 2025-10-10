@@ -163,23 +163,11 @@ class GenesisFeatureAgent(BaseAgent):
         Load Genesis pattern library.
 
         Returns:
-            Dictionary of available patterns
+            Pattern matcher instance
         """
-        # TODO: Load from Genesis pattern documentation
-        return {
-            "landing_page": {
-                "lead_form": "Lead Capture Form",
-                "hero_section": "Hero Section",
-                "social_proof": "Testimonials",
-                "features": "Feature Showcase"
-            },
-            "saas_app": {
-                "authentication": "Auth Flow",
-                "dashboard": "User Dashboard",
-                "team_management": "Multi-tenant",
-                "api_routes": "API Patterns"
-            }
-        }
+        from agents.genesis_feature.core.pattern_matcher import PatternMatcher
+
+        return PatternMatcher()
 
     async def _match_pattern(
         self,
@@ -196,11 +184,28 @@ class GenesisFeatureAgent(BaseAgent):
         Returns:
             Matched pattern dictionary
         """
-        # TODO: Implement intelligent pattern matching
+        if not self.pattern_library:
+            raise ValueError("Pattern library not initialized")
+
+        # Use pattern matcher to find best pattern
+        match_result = self.pattern_library.match_pattern(
+            feature_name,
+            description
+        )
+
+        pattern = match_result['pattern']
+        self._log(f"Matched pattern: {pattern.name}")
+        self._log(f"Confidence: {match_result['confidence']:.0%}")
+
         return {
-            "name": "default_pattern",
-            "type": "component",
-            "template": "basic"
+            "id": pattern.id,
+            "name": pattern.name,
+            "category": pattern.category,
+            "description": pattern.description,
+            "files_to_create": pattern.files_to_create,
+            "dependencies": pattern.dependencies,
+            "estimated_time": pattern.estimated_time_minutes,
+            "complexity": pattern.complexity
         }
 
     async def _create_plan(
