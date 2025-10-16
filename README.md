@@ -120,7 +120,7 @@ Chrome DevTools MCP integration for automated quality assurance:
 - **Responsive Testing**: Mobile (375px), Tablet (768px), Desktop (1920px)
 - **Accessibility Audit**: WCAG 2.1 AA compliance checking
 
-**Quick Start (5 minutes):**
+**Quick Start (15 minutes to first test):**
 ```bash
 # Install Chrome DevTools MCP
 claude mcp add chrome-devtools npx chrome-devtools-mcp@latest
@@ -129,7 +129,9 @@ claude mcp add chrome-devtools npx chrome-devtools-mcp@latest
 Run comprehensive quality scan on localhost:3000
 ```
 
-See: [Quick Setup Guide](docs/CHROME_DEVTOOLS_QUICK_SETUP.md) | [Command Reference](docs/CHROME_DEVTOOLS_COMMAND_REFERENCE.md)
+**Start Here**: [Quick Start Guide](docs/CHROME_DEVTOOLS_QUICK_START.md) - 3 commands to success!
+
+See Also: [Cheat Sheet](docs/CHROME_DEVTOOLS_CHEAT_SHEET.md) | [Command Reference](docs/CHROME_DEVTOOLS_COMMAND_REFERENCE.md) | [Complete Setup](docs/CHROME_DEVTOOLS_QUICK_SETUP.md)
 
 **Quality Standards:**
 - Landing Pages: ≥ 8.0/10 overall, ≥ 8.5/10 performance
@@ -161,12 +163,20 @@ Setup: See [`docs/ARCHON_INTEGRATION.md`](docs/ARCHON_INTEGRATION.md)
 - [Genesis Agents MCP](genesis-agents-mcp/README.md)
 
 ### Quality Validation
-- **[Quick Setup Guide](docs/CHROME_DEVTOOLS_QUICK_SETUP.md)** - Get started in 5 minutes
-- **[Command Reference](docs/CHROME_DEVTOOLS_COMMAND_REFERENCE.md)** - Ready-to-use commands
-- [Chrome DevTools MCP Integration](docs/CHROME_DEVTOOLS_MCP.md)
-- [Quality Standards](docs/QUALITY_STANDARDS.md)
-- [Browser Automation Guide](docs/BROWSER_AUTOMATION_GUIDE.md)
-- [Validation Templates](docs/QUALITY_VALIDATION_TEMPLATES.md)
+
+**Start Here**:
+- **[Quick Start Guide](docs/CHROME_DEVTOOLS_QUICK_START.md)** - 15 minutes to first test! ⚡
+- **[Cheat Sheet](docs/CHROME_DEVTOOLS_CHEAT_SHEET.md)** - One-page quick reference 📄
+
+**Reference**:
+- [Command Reference](docs/CHROME_DEVTOOLS_COMMAND_REFERENCE.md) - 45+ ready-to-use commands
+- [Complete Setup Guide](docs/CHROME_DEVTOOLS_QUICK_SETUP.md) - Full 5-minute setup
+
+**Deep Dive**:
+- [Chrome DevTools MCP Integration](docs/CHROME_DEVTOOLS_MCP.md) - Integration patterns
+- [Quality Standards](docs/QUALITY_STANDARDS.md) - Scoring criteria and thresholds
+- [Browser Automation Guide](docs/BROWSER_AUTOMATION_GUIDE.md) - Full implementation plan
+- [Validation Templates](docs/QUALITY_VALIDATION_TEMPLATES.md) - Reusable test templates
 - [Quality Reports](docs/quality-reports/) - Report templates and directory
 
 ## 🛠️ Commands
