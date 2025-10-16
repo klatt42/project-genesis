@@ -177,6 +177,36 @@ Docker Desktop's MCP Toolkit provides container-based execution and management o
 **API Keys**: See [`docs/API_KEY_SETUP.md`](docs/API_KEY_SETUP.md)
 **Workflows**: See [`docs/DOCKER_MCP_WORKFLOWS.md`](docs/DOCKER_MCP_WORKFLOWS.md)
 
+## 🤖 Claude Agent SDK Integration
+
+Transform Genesis into a fully autonomous, self-improving development platform using the Claude Code Agent SDK:
+
+**Vision**: Autonomous project scaffolding → Feature implementation → Quality validation → Self-improvement loop
+
+**Key Capabilities**:
+- **Genesis MCP Server**: Expose Genesis patterns as programmatic tools (50% context reduction)
+- **Autonomous Scaffolding**: Project creation in 15 minutes (vs 2 hours manual)
+- **Scout-Plan-Build Workflow**: 30-40% faster development with Cole Medin's proven pattern
+- **Multi-Agent Parallelization**: 50-60% faster with specialized subagents
+- **Self-Improving Platform**: Genesis learns from every project, continuously optimizing
+
+**Impact Metrics**:
+- Project setup: 2 hours → 15 minutes (8x faster)
+- Feature development: 1 day → 4 hours (3x faster)
+- Error rate: 20% → <1% (95% reduction)
+- Genesis pattern compliance: 70% → 99%+
+
+**Implementation Phases**:
+1. **Phase 1-2 (Weeks 1-4)**: Genesis MCP Server + Scaffolding Agent
+2. **Phase 3 (Weeks 5-6)**: Scout-Plan-Build Workflow
+3. **Phase 4 (Weeks 7-8)**: Multi-Agent Parallelization
+4. **Phase 5 (Weeks 9-10)**: Self-Improvement Loop
+
+**Analysis**: See [`docs/agent-sdk/genesis_agent_sdk_analysis.md`](docs/agent-sdk/genesis_agent_sdk_analysis.md)
+**Implementation Plan**: See [`docs/agent-sdk/genesis_agent_sdk_implementation.md`](docs/agent-sdk/genesis_agent_sdk_implementation.md)
+
+**Status**: Planning phase - Ready to implement Phase 1
+
 ## 📖 Documentation
 
 ### Core Workflow
