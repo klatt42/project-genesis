@@ -21,12 +21,21 @@ This project has access to the Genesis MCP Server, which provides programmatic a
    - Use when: Looking for specific patterns or best practices
    - Example: Search for "authentication" or "deployment"
 
+4. **genesis_validate_implementation** - Validate code against Genesis patterns (NEW in Week 2)
+   - Parameters: `code` (string), `patternType` (supabase-client, ghl-sync, landing-page-component, saas-auth, copilotkit-integration), `filePath` (optional)
+   - Use when: Validating implementations meet Genesis standards
+   - Returns: Validation score (0-10), issues, suggestions, compliance checklist
+   - Minimum score: 8.0/10 required for Genesis compliance
+   - Example: Validate Supabase client implementation for security and best practices
+
 ### When to Use Genesis MCP Tools
 
 - **Before implementing features**: Use `genesis_search_patterns` to find relevant patterns
 - **During Scout phase**: Use MCP tools instead of reading docs manually (50% context reduction)
 - **For integrations**: Use `genesis_get_stack_pattern` for step-by-step setup guides
 - **For architecture**: Use `genesis_get_project_template` for complete boilerplate reference
+- **After implementation**: Use `genesis_validate_implementation` to ensure 8.0+/10 compliance
+- **During Build phase**: Validate incrementally to catch issues early
 
 ### Scout-Plan-Build Workflow
 

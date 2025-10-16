@@ -6,6 +6,10 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import fs from "fs/promises";
 import path from "path";
+import {
+  validateImplementation,
+  formatValidationResult,
+} from "./tools/validation.js";
 
 // Genesis documentation paths
 const GENESIS_DOCS_PATH = path.join(process.cwd(), "..", "..", "docs");
@@ -133,6 +137,35 @@ class GenesisMCPServer {
             required: ["query"],
           },
         },
+        {
+          name: "genesis_validate_implementation",
+          description: "Validate code implementation against Genesis patterns (8.0/10 minimum score required)",
+          inputSchema: {
+            type: "object",
+            properties: {
+              code: {
+                type: "string",
+                description: "The code to validate against Genesis patterns",
+              },
+              patternType: {
+                type: "string",
+                enum: [
+                  "supabase-client",
+                  "ghl-sync",
+                  "landing-page-component",
+                  "saas-auth",
+                  "copilotkit-integration",
+                ],
+                description: "The Genesis pattern type to validate against",
+              },
+              filePath: {
+                type: "string",
+                description: "Optional file path for context",
+              },
+            },
+            required: ["code", "patternType"],
+          },
+        },
       ],
     }));
 
@@ -150,6 +183,13 @@ class GenesisMCPServer {
 
           case "genesis_search_patterns":
             return await this.searchPatterns(args.query);
+
+          case "genesis_validate_implementation":
+            return await this.validateImplementation(
+              args.code,
+              args.patternType,
+              args.filePath
+            );
 
           default:
             throw new Error(`Unknown tool: ${name}`);
@@ -278,6 +318,36 @@ class GenesisMCPServer {
         },
       ],
     };
+  }
+
+  private async validateImplementation(
+    code: string,
+    patternType: string,
+    filePath?: string
+  ) {
+    try {
+      const result = await validateImplementation(code, patternType, filePath);
+      const formattedResult = formatValidationResult(result);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: formattedResult,
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Validation error: ${error instanceof Error ? error.message : String(error)}`,
+          },
+        ],
+        isError: true,
+      };
+    }
   }
 
   async start() {
