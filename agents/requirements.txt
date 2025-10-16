@@ -3,8 +3,7 @@
 # HTTP client for Archon API integration
 httpx>=0.27.0
 
-# Async support
-asyncio-base>=3.11  # Python 3.11+ has asyncio built-in
+# Async support - built into Python 3.11+
 
 # Logging and monitoring
 python-json-logger>=2.0.7
