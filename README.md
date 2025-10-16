@@ -120,7 +120,7 @@ Chrome DevTools MCP integration for automated quality assurance:
 - **Responsive Testing**: Mobile (375px), Tablet (768px), Desktop (1920px)
 - **Accessibility Audit**: WCAG 2.1 AA compliance checking
 
-**Quick Start:**
+**Quick Start (5 minutes):**
 ```bash
 # Install Chrome DevTools MCP
 claude mcp add chrome-devtools npx chrome-devtools-mcp@latest
@@ -128,6 +128,8 @@ claude mcp add chrome-devtools npx chrome-devtools-mcp@latest
 # Run quality scan
 Run comprehensive quality scan on localhost:3000
 ```
+
+See: [Quick Setup Guide](docs/CHROME_DEVTOOLS_QUICK_SETUP.md) | [Command Reference](docs/CHROME_DEVTOOLS_COMMAND_REFERENCE.md)
 
 **Quality Standards:**
 - Landing Pages: ≥ 8.0/10 overall, ≥ 8.5/10 performance
@@ -159,10 +161,13 @@ Setup: See [`docs/ARCHON_INTEGRATION.md`](docs/ARCHON_INTEGRATION.md)
 - [Genesis Agents MCP](genesis-agents-mcp/README.md)
 
 ### Quality Validation
+- **[Quick Setup Guide](docs/CHROME_DEVTOOLS_QUICK_SETUP.md)** - Get started in 5 minutes
+- **[Command Reference](docs/CHROME_DEVTOOLS_COMMAND_REFERENCE.md)** - Ready-to-use commands
 - [Chrome DevTools MCP Integration](docs/CHROME_DEVTOOLS_MCP.md)
 - [Quality Standards](docs/QUALITY_STANDARDS.md)
 - [Browser Automation Guide](docs/BROWSER_AUTOMATION_GUIDE.md)
 - [Validation Templates](docs/QUALITY_VALIDATION_TEMPLATES.md)
+- [Quality Reports](docs/quality-reports/) - Report templates and directory
 
 ## 🛠️ Commands
 
