@@ -9,7 +9,17 @@ import path from "path";
 import {
   validateImplementation,
   formatValidationResult,
+  getGenesisPattern,
 } from "./tools/validation.js";
+import {
+  suggestImprovements,
+  formatImprovementSuggestions,
+} from "./tools/improvement.js";
+import {
+  recordNewPattern,
+  listDiscoveredPatterns,
+  type NewPattern,
+} from "./tools/pattern-recording.js";
 
 // Genesis documentation paths
 const GENESIS_DOCS_PATH = path.join(process.cwd(), "..", "..", "docs");
@@ -166,6 +176,93 @@ class GenesisMCPServer {
             required: ["code", "patternType"],
           },
         },
+        {
+          name: "genesis_suggest_improvement",
+          description: "Analyze code and suggest Genesis-based improvements for performance, security, and maintainability",
+          inputSchema: {
+            type: "object",
+            properties: {
+              code: {
+                type: "string",
+                description: "Code to analyze for improvements",
+              },
+              patternType: {
+                type: "string",
+                enum: [
+                  "supabase-client",
+                  "ghl-sync",
+                  "landing-page-component",
+                  "saas-auth",
+                  "copilotkit-integration",
+                ],
+                description: "The Genesis pattern type",
+              },
+              context: {
+                type: "string",
+                description: "Optional: additional context about the code",
+              },
+            },
+            required: ["code", "patternType"],
+          },
+        },
+        {
+          name: "genesis_record_new_pattern",
+          description: "Record a newly discovered pattern for Genesis evolution and documentation",
+          inputSchema: {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                description: "Pattern name (e.g., 'Real-time Supabase Sync')",
+              },
+              category: {
+                type: "string",
+                enum: [
+                  "integration",
+                  "component",
+                  "architecture",
+                  "deployment",
+                  "testing",
+                ],
+                description: "Pattern category",
+              },
+              description: {
+                type: "string",
+                description: "Brief description of the pattern",
+              },
+              problem: {
+                type: "string",
+                description: "What problem does this pattern solve?",
+              },
+              solution: {
+                type: "string",
+                description: "How does this pattern solve it?",
+              },
+              codeExample: {
+                type: "string",
+                description: "Code example demonstrating the pattern",
+              },
+              useCases: {
+                type: "array",
+                items: { type: "string" },
+                description: "List of use cases for this pattern",
+              },
+              genesisDoc: {
+                type: "string",
+                description: "Optional: which Genesis doc should include this (e.g., STACK_SETUP.md)",
+              },
+            },
+            required: [
+              "name",
+              "category",
+              "description",
+              "problem",
+              "solution",
+              "codeExample",
+              "useCases",
+            ],
+          },
+        },
       ],
     }));
 
@@ -176,20 +273,30 @@ class GenesisMCPServer {
       try {
         switch (name) {
           case "genesis_get_stack_pattern":
-            return await this.getStackPattern(args.integration);
+            return await this.getStackPattern((args as any).integration);
 
           case "genesis_get_project_template":
-            return await this.getProjectTemplate(args.type);
+            return await this.getProjectTemplate((args as any).type);
 
           case "genesis_search_patterns":
-            return await this.searchPatterns(args.query);
+            return await this.searchPatterns((args as any).query);
 
           case "genesis_validate_implementation":
             return await this.validateImplementation(
-              args.code,
-              args.patternType,
-              args.filePath
+              (args as any).code,
+              (args as any).patternType,
+              (args as any).filePath
             );
+
+          case "genesis_suggest_improvement":
+            return await this.suggestImprovements(
+              (args as any).code,
+              (args as any).patternType,
+              (args as any).context
+            );
+
+          case "genesis_record_new_pattern":
+            return await this.recordPattern(args as any);
 
           default:
             throw new Error(`Unknown tool: ${name}`);
@@ -199,7 +306,7 @@ class GenesisMCPServer {
           content: [
             {
               type: "text",
-              text: `Error: ${error.message}`,
+              text: `Error: ${error instanceof Error ? error.message : String(error)}`,
             },
           ],
           isError: true,
@@ -329,11 +436,14 @@ class GenesisMCPServer {
       const result = await validateImplementation(code, patternType, filePath);
       const formattedResult = formatValidationResult(result);
 
+      // Also get Genesis pattern for reference
+      const pattern = await getGenesisPattern(patternType);
+
       return {
         content: [
           {
             type: "text",
-            text: formattedResult,
+            text: `${formattedResult}\n\nGenesis Pattern Reference:\n${pattern.substring(0, 500)}...`,
           },
         ],
       };
@@ -343,6 +453,75 @@ class GenesisMCPServer {
           {
             type: "text",
             text: `Validation error: ${error instanceof Error ? error.message : String(error)}`,
+          },
+        ],
+        isError: true,
+      };
+    }
+  }
+
+  private async suggestImprovements(
+    code: string,
+    patternType: string,
+    context?: string
+  ) {
+    try {
+      const suggestions = await suggestImprovements(code, patternType, context);
+      const formatted = formatImprovementSuggestions(suggestions);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: formatted,
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Improvement analysis error: ${error instanceof Error ? error.message : String(error)}`,
+          },
+        ],
+        isError: true,
+      };
+    }
+  }
+
+  private async recordPattern(args: any) {
+    try {
+      const pattern: NewPattern = {
+        name: args.name || "",
+        category: args.category || "component",
+        description: args.description || "",
+        problem: args.problem || "",
+        solution: args.solution || "",
+        codeExample: args.codeExample || "",
+        useCases: args.useCases || [],
+        genesisDoc: args.genesisDoc,
+        discoveredBy: "Claude Agent SDK",
+        discoveredDate: new Date().toISOString().split("T")[0],
+        projectContext: args.projectContext,
+      };
+
+      await recordNewPattern(pattern);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: `✅ Pattern "${pattern.name}" recorded successfully!\n\nSaved to: patterns-discovered/${pattern.name.toLowerCase().replace(/\s+/g, '-')}.md\n\nThis pattern will be reviewed for inclusion in Genesis documentation.`,
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Pattern recording error: ${error instanceof Error ? error.message : String(error)}`,
           },
         ],
         isError: true,

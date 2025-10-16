@@ -21,12 +21,26 @@ This project has access to the Genesis MCP Server, which provides programmatic a
    - Use when: Looking for specific patterns or best practices
    - Example: Search for "authentication" or "deployment"
 
-4. **genesis_validate_implementation** - Validate code against Genesis patterns (NEW in Week 2)
+4. **genesis_validate_implementation** - Validate code against Genesis patterns (Week 2)
    - Parameters: `code` (string), `patternType` (supabase-client, ghl-sync, landing-page-component, saas-auth, copilotkit-integration), `filePath` (optional)
    - Use when: Validating implementations meet Genesis standards
-   - Returns: Validation score (0-10), issues, suggestions, compliance checklist
+   - Returns: Validation score (0-10), issues, suggestions, compliance checklist, Genesis pattern reference
    - Minimum score: 8.0/10 required for Genesis compliance
    - Example: Validate Supabase client implementation for security and best practices
+
+5. **genesis_suggest_improvement** - Get improvement suggestions (Week 2 Day 2)
+   - Parameters: `code` (string), `patternType` (string), `context` (optional)
+   - Use when: Looking for ways to improve existing code
+   - Returns: Prioritized suggestions (high/medium/low) for performance, security, maintainability, Genesis compliance
+   - Categories: Performance optimization, security hardening, maintainability, Genesis pattern alignment
+   - Example: Get performance and security improvements for a component
+
+6. **genesis_record_new_pattern** - Record discovered patterns (Week 2 Day 2)
+   - Parameters: `name`, `category`, `description`, `problem`, `solution`, `codeExample`, `useCases`, `genesisDoc` (optional)
+   - Use when: Discovering new patterns during development that should be added to Genesis
+   - Returns: Confirmation and file path
+   - Saves to: `patterns-discovered/` directory with automatic INDEX.md updates
+   - Example: Record a new integration pattern discovered during implementation
 
 ### When to Use Genesis MCP Tools
 
@@ -36,6 +50,8 @@ This project has access to the Genesis MCP Server, which provides programmatic a
 - **For architecture**: Use `genesis_get_project_template` for complete boilerplate reference
 - **After implementation**: Use `genesis_validate_implementation` to ensure 8.0+/10 compliance
 - **During Build phase**: Validate incrementally to catch issues early
+- **For optimization**: Use `genesis_suggest_improvement` to get prioritized improvement suggestions
+- **When innovating**: Use `genesis_record_new_pattern` to capture discovered patterns for Genesis evolution
 
 ### Scout-Plan-Build Workflow
 
