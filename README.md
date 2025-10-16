@@ -150,6 +150,33 @@ Archon MCP server provides:
 
 Setup: See [`docs/ARCHON_INTEGRATION.md`](docs/ARCHON_INTEGRATION.md)
 
+## 🐳 Docker MCP Integration
+
+Docker Desktop's MCP Toolkit provides container-based execution and management of MCP servers:
+
+- **Container Isolation**: Each MCP server runs in isolated Docker container
+- **One-Click Installation**: Visual catalog of pre-built MCP servers
+- **Centralized Management**: Single interface for all MCP servers
+- **Automatic Lifecycle**: Containers spin up/down as needed
+- **Multi-Client Support**: Share MCPs across Claude Code, Claude Desktop, Cursor, Continue.dev
+
+**Genesis-Critical MCPs**:
+- ✅ Supabase (database, auth, storage)
+- ✅ GitHub (version control, PRs, issues)
+- ✅ Netlify (deployment, hosting)
+- ✅ Chrome DevTools (quality validation)
+- ✅ Archon OS (project orchestration)
+
+**Recommended MCPs**:
+- 🔄 Brave Search (web research)
+- 🔄 Firecrawl (web scraping, competitive analysis)
+- 🔄 Slack (team communication)
+- 🔄 GoHighLevel (CRM, lead management)
+
+**Setup**: See [`docs/DOCKER_MCP_SETUP.md`](docs/DOCKER_MCP_SETUP.md)
+**API Keys**: See [`docs/API_KEY_SETUP.md`](docs/API_KEY_SETUP.md)
+**Workflows**: See [`docs/DOCKER_MCP_WORKFLOWS.md`](docs/DOCKER_MCP_WORKFLOWS.md)
+
 ## 📖 Documentation
 
 ### Core Workflow
