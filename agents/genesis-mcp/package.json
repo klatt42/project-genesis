@@ -1,0 +1,21 @@
+{
+  "name": "genesis-mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.ts",
+  "scripts": {
+    "start": "tsx server.ts",
+    "dev": "tsx watch server.ts",
+    "build": "tsc",
+    "test": "echo \"Tests coming in Week 2\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.67.0",
+    "@modelcontextprotocol/sdk": "^1.20.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "@types/node": "^24.8.0"
+  }
+}
