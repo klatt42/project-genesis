@@ -117,7 +117,7 @@ await Promise.all(items.map(item => processItem(item)));
   }
 
   // Check for inefficient database queries
-  if (code.includes('supabase') && code.includes('.select()')) {
+  if (code.includes('supabase') && (code.includes('.select(') || code.includes('.select ('))){
     if (!code.includes('.limit(') && !code.includes('.range(')) {
       suggestions.push({
         category: 'performance',
@@ -141,20 +141,35 @@ await Promise.all(items.map(item => processItem(item)));
 function analyzeMaintainability(code: string): ImprovementSuggestion[] {
   const suggestions: ImprovementSuggestion[] = [];
 
-  // Check function length
-  const functions = code.match(/(?:function|const)\s+\w+[^{]*{([^}]*{[^}]*}[^}]*)*}/g) || [];
-  const longFunctions = functions.filter(f => f.split('\n').length > 50);
+  // Check function length - count actual lines not just split
+  const lines = code.split('\n');
+  if (lines.length > 50) {
+    // Try to detect if there's actually a long function
+    const functionMatches = code.matchAll(/(?:function|const)\s+(\w+)[^{]*{/g);
+    let hasLongFunction = false;
 
-  if (longFunctions.length > 0) {
-    suggestions.push({
-      category: 'maintainability',
-      priority: 'medium',
-      title: 'Long function detected',
-      description: 'Functions over 50 lines are harder to test and maintain',
-      currentApproach: 'Single large function',
-      suggestedApproach: 'Break into smaller, focused functions',
-      impact: 'Improves code readability, testability, and maintainability'
-    });
+    for (const match of functionMatches) {
+      const functionStart = match.index || 0;
+      const afterFunction = code.substring(functionStart);
+      const functionCode = afterFunction.substring(0, afterFunction.indexOf('}') + 1);
+
+      if (functionCode.split('\n').length > 50) {
+        hasLongFunction = true;
+        break;
+      }
+    }
+
+    if (hasLongFunction) {
+      suggestions.push({
+        category: 'maintainability',
+        priority: 'medium',
+        title: 'Long function detected',
+        description: 'Functions over 50 lines are harder to test and maintain',
+        currentApproach: 'Single large function',
+        suggestedApproach: 'Break into smaller, focused functions',
+        impact: 'Improves code readability, testability, and maintainability'
+      });
+    }
   }
 
   // Check for magic numbers

@@ -47,8 +47,8 @@ const PATTERN_VALIDATORS = {
       'typescript types'
     ],
     checks: [
-      { pattern: /process\.env\.SUPABASE_URL|SUPABASE_URL.*process\.env/s, message: 'Must use environment variables for Supabase URL' },
-      { pattern: /process\.env\.SUPABASE.*KEY|SUPABASE.*KEY.*process\.env/s, message: 'Must use environment variables for Supabase key' },
+      { pattern: /process\.env\.(NEXT_PUBLIC_)?SUPABASE.*URL/s, message: 'Must use environment variables for Supabase URL' },
+      { pattern: /process\.env\.(NEXT_PUBLIC_)?SUPABASE.*KEY/s, message: 'Must use environment variables for Supabase key' },
       { pattern: /try\s*{[\s\S]*catch/m, message: 'Must include error handling' },
       { pattern: /:\s*Database|<Database>/m, message: 'Should use TypeScript types from Supabase' }
     ],
@@ -254,8 +254,9 @@ function checkNamingConventions(code: string, patternType: string): ValidationIs
 
   // Check for proper component naming (PascalCase)
   if (patternType.includes('component') || patternType.includes('page')) {
-    const componentMatch = code.match(/(?:function|const)\s+([a-z]\w+)/);
-    if (componentMatch) {
+    // Match function or const declarations that don't start with uppercase or 'use'
+    const componentMatch = code.match(/(?:export\s+)?(?:default\s+)?(?:function|const)\s+([a-z][a-z]\w+)(?!\s*=\s*use)/);
+    if (componentMatch && !componentMatch[1].startsWith('use')) {
       issues.push({
         severity: 'warning',
         category: 'naming',
