@@ -1,0 +1,29 @@
+{
+  "name": "@genesis/scout-agent",
+  "version": "1.0.0",
+  "description": "Genesis Scout Agent - Requirements analysis and PRP generation",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "test": "node dist/index.js \"Test landing page with lead capture\""
+  },
+  "keywords": [
+    "genesis",
+    "scout",
+    "agent",
+    "requirements",
+    "prp"
+  ],
+  "author": "Genesis Agent SDK",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}
