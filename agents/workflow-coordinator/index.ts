@@ -43,6 +43,12 @@ Options:
   --min-quality <n>   Minimum quality score (default: 8.0)
   --continue          Continue on task failures
 
+Week 5 Parallel Execution (NEW):
+  --parallel-workers <n>  Enable parallel build execution with N workers (default: 3, max: 10)
+  --parallel-strategy <s> Scheduling strategy (FIFO|PRIORITY|SHORTEST_JOB_FIRST|CRITICAL_PATH|ROUND_ROBIN|WORKLOAD_BALANCED)
+  --no-autoscale          Disable auto-scaling of worker pool
+  --show-dashboard        Show real-time progress dashboard (terminal UI)
+
 Examples:
   # Simple landing page
   node dist/workflow-coordinator/index.js "Landing page for plumbing company"
@@ -52,6 +58,12 @@ Examples:
 
   # With custom options
   node dist/workflow-coordinator/index.js "E-commerce store" --output-dir ./projects --no-tests
+
+  # With parallel execution (Week 5)
+  node dist/workflow-coordinator/index.js "Multi-page website" --parallel-workers 5 --show-dashboard
+
+  # Advanced parallel execution
+  node dist/workflow-coordinator/index.js "Complex SaaS app" --parallel-workers 8 --parallel-strategy CRITICAL_PATH
 
   # Resume paused workflow
   node dist/workflow-coordinator/index.js --resume ./workflow-states/workflow-123.json
@@ -116,6 +128,33 @@ Examples:
     const minQualityIndex = args.indexOf('--min-quality');
     if (minQualityIndex !== -1 && args[minQualityIndex + 1]) {
       config.buildConfig!.minimumQualityScore = parseFloat(args[minQualityIndex + 1]);
+    }
+
+    // Parse Week 5 parallel execution options
+    const parallelWorkersIndex = args.indexOf('--parallel-workers');
+    if (parallelWorkersIndex !== -1 && args[parallelWorkersIndex + 1]) {
+      const workerCount = parseInt(args[parallelWorkersIndex + 1]);
+      if (!isNaN(workerCount) && workerCount >= 1 && workerCount <= 10) {
+        config.parallelExecution = {
+          enabled: true,
+          workerCount,
+          autoScaling: !args.includes('--no-autoscale'),
+          showDashboard: args.includes('--show-dashboard')
+        };
+      }
+    }
+
+    // Parse parallel strategy
+    const strategyIndex = args.indexOf('--parallel-strategy');
+    if (strategyIndex !== -1 && args[strategyIndex + 1]) {
+      const strategy = args[strategyIndex + 1];
+      const validStrategies = ['FIFO', 'PRIORITY', 'SHORTEST_JOB_FIRST', 'CRITICAL_PATH', 'ROUND_ROBIN', 'WORKLOAD_BALANCED'];
+      if (validStrategies.includes(strategy)) {
+        if (!config.parallelExecution) {
+          config.parallelExecution = { enabled: true, workerCount: 3 };
+        }
+        config.parallelExecution.schedulingStrategy = strategy as any;
+      }
     }
 
     // Create workflow coordinator

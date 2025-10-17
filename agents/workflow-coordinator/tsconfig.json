@@ -24,6 +24,8 @@
   "exclude": [
     "node_modules",
     "dist",
+    "test-saas",
+    "test-workflow",
     "../scout-agent/node_modules",
     "../scout-agent/dist",
     "../plan-agent/node_modules",

@@ -52,6 +52,15 @@ export interface WorkflowConfig {
   autoAdvance: boolean; // Automatically advance to next stage
   pauseOnError: boolean; // Pause workflow on errors
   saveIntermediateResults: boolean; // Save results after each stage
+
+  // Week 5: Parallel Execution (optional)
+  parallelExecution?: {
+    enabled: boolean;
+    workerCount?: number; // 1-10, default: 3
+    autoScaling?: boolean; // Enable auto-scaling
+    schedulingStrategy?: 'FIFO' | 'PRIORITY' | 'SHORTEST_JOB_FIRST' | 'CRITICAL_PATH' | 'ROUND_ROBIN' | 'WORKLOAD_BALANCED';
+    showDashboard?: boolean; // Show real-time dashboard
+  };
 }
 
 /**

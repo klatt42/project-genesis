@@ -179,6 +179,26 @@ export class WorkflowCoordinator {
       this.progressReporter.reportStageStart('build');
 
       try {
+        // Week 5: Parallel execution support
+        // NOTE: Parallel execution is available when config.parallelExecution.enabled is true
+        // For parallel mode: Use ParallelExecutor from ../parallel-executor to run tasks with multiple workers
+        // For sequential mode (current): Use standard BuildAgent
+        const useParallel = this.config.parallelExecution?.enabled ?? false;
+
+        if (useParallel) {
+          // TODO: Implement parallel execution integration
+          // 1. Load execution plan from result.planPath
+          // 2. Create ParallelExecutor with config.parallelExecution settings
+          // 3. Execute tasks in parallel with worker pool
+          // 4. Show dashboard if config.parallelExecution.showDashboard is true
+          // 5. Aggregate results into BuildResult format
+          console.log('⚡ Parallel execution mode enabled (integration in progress)');
+          console.log(`   Workers: ${this.config.parallelExecution?.workerCount ?? 3}`);
+          console.log(`   Strategy: ${this.config.parallelExecution?.schedulingStrategy ?? 'WORKLOAD_BALANCED'}`);
+          console.log('   Falling back to sequential execution...\n');
+        }
+
+        // Standard sequential execution (Week 4 compatible)
         const buildAgent = new BuildAgent(this.config.buildConfig);
         result.buildResult = await buildAgent.build(result.planPath!);
 
