@@ -1,0 +1,230 @@
+{
+  "success": true,
+  "session": {
+    "sessionId": "build-1760660349661",
+    "projectName": "simple-portfolio-website",
+    "projectPath": "test-workflow/simple-portfolio-website",
+    "planFile": "",
+    "startTime": "2025-10-17T00:19:09.661Z",
+    "completedTasks": [
+      "task-1",
+      "task-4",
+      "task-2",
+      "task-3",
+      "task-5",
+      "task-6",
+      "task-7"
+    ],
+    "failedTasks": [],
+    "checkpoints": [
+      {
+        "id": "checkpoint-1",
+        "timestamp": "2025-10-17T00:19:09.665Z",
+        "taskId": "task-1",
+        "taskName": "Scaffold project structure",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-2",
+        "timestamp": "2025-10-17T00:19:09.667Z",
+        "taskId": "task-4",
+        "taskName": "Validate code quality",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 7
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-3",
+        "timestamp": "2025-10-17T00:19:09.669Z",
+        "taskId": "task-2",
+        "taskName": "Install dependencies",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-4",
+        "timestamp": "2025-10-17T00:19:09.670Z",
+        "taskId": "task-3",
+        "taskName": "Configure environment",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-5",
+        "timestamp": "2025-10-17T00:19:09.671Z",
+        "taskId": "task-5",
+        "taskName": "Run tests",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-6",
+        "timestamp": "2025-10-17T00:19:09.674Z",
+        "taskId": "task-6",
+        "taskName": "Build production bundle",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-7",
+        "timestamp": "2025-10-17T00:19:09.675Z",
+        "taskId": "task-7",
+        "taskName": "Final validation",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      }
+    ],
+    "status": "completed",
+    "currentTask": "task-7"
+  },
+  "results": [
+    {
+      "taskId": "task-1",
+      "taskName": "Scaffold project structure",
+      "success": true,
+      "startTime": "2025-10-17T00:19:09.661Z",
+      "endTime": "2025-10-17T00:19:09.665Z",
+      "durationMs": 4,
+      "filesCreated": [
+        "package.json",
+        "tsconfig.json",
+        ".gitignore",
+        ".env.example"
+      ],
+      "filesModified": [],
+      "checkpoint": "checkpoint-1"
+    },
+    {
+      "taskId": "task-4",
+      "taskName": "Validate code quality",
+      "success": true,
+      "startTime": "2025-10-17T00:19:09.665Z",
+      "endTime": "2025-10-17T00:19:09.667Z",
+      "durationMs": 2,
+      "filesCreated": [],
+      "filesModified": [],
+      "validationScore": 7,
+      "checkpoint": "checkpoint-2"
+    },
+    {
+      "taskId": "task-2",
+      "taskName": "Install dependencies",
+      "success": true,
+      "startTime": "2025-10-17T00:19:09.668Z",
+      "endTime": "2025-10-17T00:19:09.669Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-3"
+    },
+    {
+      "taskId": "task-3",
+      "taskName": "Configure environment",
+      "success": true,
+      "startTime": "2025-10-17T00:19:09.669Z",
+      "endTime": "2025-10-17T00:19:09.670Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-4"
+    },
+    {
+      "taskId": "task-5",
+      "taskName": "Run tests",
+      "success": true,
+      "startTime": "2025-10-17T00:19:09.670Z",
+      "endTime": "2025-10-17T00:19:09.671Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "testsRun": 5,
+      "testsPassed": 5,
+      "checkpoint": "checkpoint-5"
+    },
+    {
+      "taskId": "task-6",
+      "taskName": "Build production bundle",
+      "success": true,
+      "startTime": "2025-10-17T00:19:09.672Z",
+      "endTime": "2025-10-17T00:19:09.674Z",
+      "durationMs": 2,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-6"
+    },
+    {
+      "taskId": "task-7",
+      "taskName": "Final validation",
+      "success": true,
+      "startTime": "2025-10-17T00:19:09.674Z",
+      "endTime": "2025-10-17T00:19:09.675Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-7"
+    }
+  ],
+  "finalValidation": {
+    "isValid": true,
+    "score": 7,
+    "issues": [],
+    "recommendations": []
+  },
+  "outputPath": "test-workflow/simple-portfolio-website",
+  "timing": {
+    "totalMs": 17,
+    "avgTaskMs": 1.7142857142857142,
+    "validationMs": 4,
+    "testingMs": 0
+  },
+  "statistics": {
+    "totalTasks": 7,
+    "completedTasks": 7,
+    "failedTasks": 0,
+    "filesCreated": 4,
+    "filesModified": 0,
+    "averageQuality": 1
+  }
+}

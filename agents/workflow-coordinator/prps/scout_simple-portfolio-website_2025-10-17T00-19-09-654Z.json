@@ -1,0 +1,301 @@
+{
+  "version": "1.0",
+  "projectName": "simple-portfolio-website",
+  "createdAt": "2025-10-17T00:19:09.653Z",
+  "scoutAgent": {
+    "version": "1.0.0",
+    "qualityScore": 10
+  },
+  "projectVision": {
+    "overallGoal": "Create a high-converting simple-portfolio-website that captures leads effectively and integrates seamlessly with netlify.",
+    "targetUsers": [
+      "Website visitors",
+      "Potential customers"
+    ],
+    "successCriteria": [
+      "Project builds without errors",
+      "All tests pass",
+      "Code quality score >= 8/10",
+      "Lead capture form submits successfully",
+      "Form data saves to database",
+      "Responsive design works on mobile/tablet/desktop",
+      "Deploys successfully to Netlify",
+      "All Genesis validation checks pass"
+    ],
+    "userPainPoints": [
+      "Manual lead collection is time-consuming and error-prone",
+      "Difficulty tracking lead sources and conversion rates",
+      "Lack of automated follow-up systems"
+    ],
+    "proposedSolution": "A modern, responsive landing page built with Next.js 14 and Tailwind CSS that includes . Integrated with netlify for seamless data flow and automation. Follows Genesis best practices for 8+/10 quality standard."
+  },
+  "technicalContext": {
+    "stack": {
+      "frontend": [
+        "Next.js 14",
+        "React 18",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Next.js API Routes",
+        "Server Actions"
+      ],
+      "database": [],
+      "deployment": [
+        "Netlify"
+      ],
+      "integrations": [
+        "NETLIFY"
+      ]
+    },
+    "genesisPatterns": [
+      {
+        "name": "LANDING_PAGE_TEMPLATE.md",
+        "path": "docs/LANDING_PAGE_TEMPLATE.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "STACK_SETUP.md",
+        "path": "docs/STACK_SETUP.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      }
+    ],
+    "keyDependencies": [
+      "next@14.2.0",
+      "react@18.3.1",
+      "typescript@5.x",
+      "tailwindcss@3.x"
+    ],
+    "environmentVariables": [],
+    "potentialGotchas": [
+      {
+        "issue": "Client/Server component confusion in Next.js 14",
+        "solution": "Use \"use client\" directive for components with hooks or browser APIs",
+        "prevention": "Follow Genesis component patterns, validate with TypeScript"
+      },
+      {
+        "issue": "Missing or incorrect environment variables",
+        "solution": "Copy .env.example to .env.local and fill in all values",
+        "prevention": "Add environment variable validation at app startup"
+      }
+    ]
+  },
+  "implementationBlueprint": {
+    "phases": [
+      {
+        "name": "Project Setup",
+        "description": "Initialize project structure and dependencies",
+        "estimatedHours": 0.5,
+        "tasks": [
+          {
+            "name": "Scaffold project structure",
+            "description": "Create landing-page project using Genesis scaffolding agent",
+            "agent": "scaffolding",
+            "estimatedMinutes": 5,
+            "dependencies": [],
+            "genesisPattern": "LANDING_PAGE_TEMPLATE.md"
+          },
+          {
+            "name": "Install dependencies",
+            "description": "Run npm install and verify all packages",
+            "agent": "build",
+            "estimatedMinutes": 10,
+            "dependencies": [
+              "Scaffold project structure"
+            ]
+          },
+          {
+            "name": "Configure environment",
+            "description": "Set up .env.local with required variables",
+            "agent": "build",
+            "estimatedMinutes": 15,
+            "dependencies": [
+              "Scaffold project structure"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Core Features",
+        "description": "Implement main application features",
+        "estimatedHours": 0,
+        "tasks": []
+      },
+      {
+        "name": "Validation & Testing",
+        "description": "Validate code quality and test functionality",
+        "estimatedHours": 1,
+        "tasks": [
+          {
+            "name": "Validate code quality",
+            "description": "Run genesis_validate_implementation on all files",
+            "agent": "validator",
+            "estimatedMinutes": 20,
+            "dependencies": [
+              "Setup undefined integration"
+            ]
+          },
+          {
+            "name": "Run tests",
+            "description": "Execute all automated tests",
+            "agent": "validator",
+            "estimatedMinutes": 15,
+            "dependencies": [
+              "Validate code quality"
+            ]
+          },
+          {
+            "name": "Build production bundle",
+            "description": "Run npm run build and verify success",
+            "agent": "build",
+            "estimatedMinutes": 10,
+            "dependencies": [
+              "Run tests"
+            ]
+          },
+          {
+            "name": "Final validation",
+            "description": "Verify all validation gates pass",
+            "agent": "validator",
+            "estimatedMinutes": 15,
+            "dependencies": [
+              "Build production bundle"
+            ]
+          }
+        ]
+      }
+    ],
+    "criticalPath": [
+      "Scaffold project structure",
+      "Install dependencies",
+      "Configure environment",
+      "Validate code quality",
+      "Run tests",
+      "Build production bundle",
+      "Final validation"
+    ],
+    "parallelizable": [
+      []
+    ]
+  },
+  "validationGates": {
+    "level1_fileStructure": {
+      "requiredFiles": [
+        "package.json",
+        "tsconfig.json",
+        "next.config.ts",
+        "tailwind.config.ts",
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/globals.css",
+        ".env.example",
+        "README.md"
+      ],
+      "requiredDirectories": [
+        "app",
+        "components",
+        "lib",
+        "public",
+        "types"
+      ]
+    },
+    "level2_codeQuality": {
+      "minimumScore": 8,
+      "requiredPatterns": [
+        "LANDING_PAGE_TEMPLATE.md",
+        "STACK_SETUP.md"
+      ],
+      "lintingRules": [
+        "typescript-eslint",
+        "next/core-web-vitals"
+      ]
+    },
+    "level3_functionality": {
+      "requiredTests": [
+        "Build completes successfully"
+      ],
+      "manualChecks": [
+        "Visual inspection of UI matches design",
+        "Mobile responsive layout works correctly",
+        "All interactive elements are functional",
+        "No console errors in browser"
+      ]
+    },
+    "level4_deployment": {
+      "buildCommand": "npm run build",
+      "deploymentTarget": "Netlify",
+      "environmentChecks": [
+        "NETLIFY_configured"
+      ]
+    }
+  },
+  "research": {
+    "genesisPatterns": [
+      {
+        "name": "LANDING_PAGE_TEMPLATE.md",
+        "path": "docs/LANDING_PAGE_TEMPLATE.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "STACK_SETUP.md",
+        "path": "docs/STACK_SETUP.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      }
+    ],
+    "externalResearch": [
+      {
+        "source": "Genesis Documentation",
+        "findings": [
+          "Use Genesis templates for consistency",
+          "Enforce 8+/10 quality standard",
+          "Follow BMAD PRP structure"
+        ],
+        "relevanceScore": 10,
+        "timestamp": "2025-10-17T00:19:09.653Z"
+      }
+    ],
+    "bestPractices": [
+      "Use Genesis templates for consistency",
+      "Enforce 8+/10 quality standard",
+      "Follow BMAD PRP structure",
+      "Follow Genesis 8+/10 quality standard",
+      "Use TypeScript strictly with no any types",
+      "Include comprehensive error handling",
+      "Add validation at all input points",
+      "Document complex logic with comments",
+      "Follow Next.js 14 App Router conventions",
+      "Implement proper loading states",
+      "Add meaningful error messages"
+    ]
+  },
+  "metadata": {
+    "complexity": "simple",
+    "estimatedTotalHours": 2,
+    "riskFactors": []
+  }
+}
