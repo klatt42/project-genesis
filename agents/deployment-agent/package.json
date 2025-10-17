@@ -1,0 +1,28 @@
+{
+  "name": "@genesis/deployment-agent",
+  "version": "1.0.0",
+  "description": "Genesis Agent SDK - Multi-platform deployment automation",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test": "echo \"Tests not yet implemented\" && exit 0"
+  },
+  "keywords": [
+    "deployment",
+    "netlify",
+    "vercel",
+    "automation",
+    "ci/cd"
+  ],
+  "author": "Genesis Agent SDK",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

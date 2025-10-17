@@ -239,46 +239,148 @@ program
   });
 
 /**
- * Deploy command - Deploy to Netlify
+ * Deploy command - Deploy to platform (Netlify/Vercel)
  */
 program
   .command('deploy')
-  .description('Deploy project to Netlify')
+  .description('Deploy project to hosting platform')
   .argument('[path]', 'Project path', '.')
-  .option('--prod', 'Deploy to production')
+  .option('--platform <platform>', 'Platform (netlify, vercel)', 'netlify')
+  .option('--staging', 'Deploy to staging')
+  .option('--production', 'Deploy to production')
+  .option('--skip-migrations', 'Skip database migrations')
+  .option('--skip-monitoring', 'Skip monitoring setup')
   .action(async (projectPath: string, options: any) => {
-    console.log(chalk.cyan.bold('\n🚀 Deploying to Netlify\n'));
+    console.log(chalk.cyan.bold(`\n🚀 Deploying to ${options.platform}\n`));
 
-    const spinner = ora('Checking project...').start();
+    const spinner = ora('Initializing deployment...').start();
 
     try {
-      // Check if project has netlify.toml
-      const { promises: fs } = await import('fs');
+      const { DeploymentWorkflow } = await import('../workflow-coordinator/deployment-workflow.js');
       const path = await import('path');
-      const netlifyConfigPath = path.join(projectPath, 'netlify.toml');
 
-      try {
-        await fs.access(netlifyConfigPath);
-      } catch {
-        spinner.fail('netlify.toml not found');
-        console.log(chalk.yellow('\n⚠️  This project is not configured for Netlify'));
-        console.log(chalk.cyan('Run: genesis setup-services\n'));
-        process.exit(1);
-      }
+      const environment = options.production ? 'production' : 'staging';
+      const projectName = path.basename(process.cwd());
 
-      spinner.succeed('Project ready for deployment');
+      spinner.succeed('Deployment initialized');
 
-      console.log(chalk.cyan('\nDeployment options:\n'));
-      console.log('  1. Netlify CLI (recommended):');
-      console.log(chalk.gray('     npm install -g netlify-cli'));
-      console.log(chalk.gray('     netlify deploy' + (options.prod ? ' --prod' : '')));
-      console.log('\n  2. GitHub + Netlify Dashboard:');
-      console.log(chalk.gray('     Push to GitHub and connect via app.netlify.com'));
-
-      console.log(chalk.green('\n💡 See README.md for detailed deployment instructions\n'));
+      const workflow = new DeploymentWorkflow();
+      await workflow.executeDeploymentPhase({
+        projectPath: projectPath === '.' ? process.cwd() : projectPath,
+        projectName,
+        platform: options.platform,
+        environment,
+        skipMigrations: options.skipMigrations,
+        skipMonitoring: options.skipMonitoring,
+        autoApprove: environment === 'staging'
+      });
 
     } catch (error) {
-      spinner.fail('Deployment check failed');
+      spinner.fail('Deployment failed');
+      console.error(chalk.red('\n❌ Error:'), error instanceof Error ? error.message : String(error));
+      process.exit(1);
+    }
+  });
+
+/**
+ * Migrate command - Database migration management
+ */
+program
+  .command('migrate <action>')
+  .description('Database migration commands (create, up, down, seed, status)')
+  .option('--name <name>', 'Migration name (for create)')
+  .option('--template <template>', 'Migration template (create_table, add_column, etc.)', 'blank')
+  .option('--steps <n>', 'Number of migration steps (for up/down)', '1')
+  .action(async (action: string, options: any) => {
+    try {
+      const {
+        migrationCreate,
+        migrationUp,
+        migrationDown,
+        migrationSeed,
+        migrationStatus,
+        migrationList
+      } = await import('../migration-agent/index.js');
+
+      switch (action) {
+        case 'create':
+          if (!options.name) {
+            console.error(chalk.red('❌ Migration name is required'));
+            console.log(chalk.cyan('Usage: genesis migrate create --name add_users_table'));
+            process.exit(1);
+          }
+          await migrationCreate(options.name, options);
+          break;
+
+        case 'up':
+          await migrationUp(options);
+          break;
+
+        case 'down':
+          await migrationDown(options);
+          break;
+
+        case 'seed':
+          await migrationSeed();
+          break;
+
+        case 'status':
+          await migrationStatus();
+          break;
+
+        case 'list':
+          await migrationList();
+          break;
+
+        default:
+          console.error(chalk.red(`❌ Unknown migration action: ${action}`));
+          console.log(chalk.cyan('\nAvailable actions:'));
+          console.log('  create  - Create a new migration');
+          console.log('  up      - Run pending migrations');
+          console.log('  down    - Rollback migrations');
+          console.log('  seed    - Run seed data');
+          console.log('  status  - Show migration status');
+          console.log('  list    - List all migrations');
+          process.exit(1);
+      }
+    } catch (error) {
+      console.error(chalk.red('\n❌ Error:'), error instanceof Error ? error.message : String(error));
+      process.exit(1);
+    }
+  });
+
+/**
+ * Generate CI/CD command - Generate CI/CD pipeline configurations
+ */
+program
+  .command('generate-cicd')
+  .description('Generate CI/CD pipeline configuration')
+  .option('--platform <platform>', 'CI/CD platform (github-actions, gitlab-ci, circleci)', 'github-actions')
+  .option('--deployment <platform>', 'Deployment platform (netlify, vercel, railway, flyio)', 'netlify')
+  .option('--project-name <name>', 'Project name')
+  .action(async (options: any) => {
+    console.log(chalk.cyan.bold('\n🔧 Generating CI/CD Pipeline\n'));
+
+    const spinner = ora('Generating pipeline configuration...').start();
+
+    try {
+      const { generatePipeline } = await import('../cicd-generator/index.js');
+      const path = await import('path');
+
+      const projectName = options.projectName || path.basename(process.cwd());
+
+      await generatePipeline({
+        platform: options.platform,
+        projectName,
+        deploymentPlatform: options.deployment,
+        projectPath: process.cwd()
+      });
+
+      spinner.succeed('Pipeline configuration generated');
+      console.log(chalk.green('\n✅ CI/CD pipeline configured successfully!\n'));
+
+    } catch (error) {
+      spinner.fail('Pipeline generation failed');
       console.error(chalk.red('\n❌ Error:'), error instanceof Error ? error.message : String(error));
       process.exit(1);
     }
@@ -293,15 +395,18 @@ program
   .action(() => {
     console.log(chalk.cyan.bold('\n📊 Genesis Agent SDK\n'));
     console.log('Version: 1.0.0');
-    console.log('Phase: 1 Week 3 - Scaffolding Agent');
+    console.log('Phase: 2 Week 6 - Complete Pipeline');
     console.log('\nCapabilities:');
     console.log('  ✅ Project scaffolding (landing-page, saas-app)');
     console.log('  ✅ Service integration (Supabase, GHL, Netlify)');
     console.log('  ✅ Setup validation');
-    console.log('  ✅ Deployment assistance');
+    console.log('  ✅ Multi-platform deployment (Netlify, Vercel)');
+    console.log('  ✅ Database migration automation');
+    console.log('  ✅ CI/CD pipeline generation (GitHub, GitLab, CircleCI)');
+    console.log('  ✅ Monitoring & observability setup');
     console.log('\nDocumentation:');
     console.log('  Genesis Docs: docs/agent-sdk/');
-    console.log('  Quick Start: docs/PHASE_1_WEEK_3_QUICK_START.md');
+    console.log('  Week 6 Complete: WEEK_6_COMPLETE.md');
     console.log('\n');
   });
 
