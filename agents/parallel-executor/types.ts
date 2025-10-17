@@ -184,3 +184,48 @@ export interface DependencyResolution {
   blockedTasks: string[]; // Tasks blocked by dependencies
   circularDependencies: string[][]; // Detected cycles
 }
+
+/**
+ * Scheduling strategies for task assignment
+ */
+export type SchedulingStrategy =
+  | 'FIFO' // First-In-First-Out
+  | 'PRIORITY' // Priority-based
+  | 'SHORTEST_JOB_FIRST' // Shortest job first
+  | 'CRITICAL_PATH' // Focus on critical path
+  | 'ROUND_ROBIN' // Round robin across workers
+  | 'WORKLOAD_BALANCED'; // Balance worker utilization
+
+/**
+ * Auto-scaling configuration
+ */
+export interface AutoScalingConfig {
+  minWorkers: number; // Minimum worker count
+  maxWorkers: number; // Maximum worker count
+  scaleUpThreshold: number; // Queue size to trigger scale-up
+  scaleDownThreshold: number; // Idle time to trigger scale-down
+  cooldownMs: number; // Cooldown period between scaling actions
+}
+
+/**
+ * System resource metrics
+ */
+export interface SystemMetrics {
+  cpuUsagePercent: number;
+  memoryUsedBytes: number;
+  memoryTotalBytes: number;
+  diskUsedBytes: number;
+  diskTotalBytes: number;
+  timestamp: string;
+}
+
+/**
+ * Performance metrics for optimization
+ */
+export interface PerformanceMetrics {
+  averageTaskDuration: number;
+  throughput: number; // Tasks per minute
+  workerUtilization: number; // Percentage of time workers are busy
+  queueLatency: number; // Average time tasks spend in queue
+  parallelismEfficiency: number; // Actual vs theoretical speedup
+}
