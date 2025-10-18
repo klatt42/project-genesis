@@ -1,0 +1,28 @@
+{
+  "name": "@genesis/project-revival",
+  "version": "1.0.0",
+  "description": "Genesis Project Revival - Intelligent system for completing stalled projects",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.ts\""
+  },
+  "keywords": [
+    "genesis",
+    "project-revival",
+    "code-analysis",
+    "autonomous-development"
+  ],
+  "author": "Genesis Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^24.8.1",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.9.3"
+  }
+}
