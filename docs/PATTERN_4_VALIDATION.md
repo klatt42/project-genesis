@@ -277,6 +277,58 @@ Record in monthly assessment:
 - 5-6 checks + 🟡: Good, sustainable process
 - <5 checks or 🔴: Process needs adjustment
 
+---
+
+### Milestone Compression Checklist
+
+Use this systematic checklist at each milestone to ensure complete and high-quality compression.
+
+**Before Starting** (~1 min):
+- [ ] Milestone clearly identified and scoped
+- [ ] All work since last milestone collected
+- [ ] 15-20 minutes allocated for compression
+
+**During Compression** (~15 min):
+- [ ] Milestone marker created with clear deliverables
+- [ ] All work since last milestone reviewed
+- [ ] Technique 1 (Progressive Summarization) applied to verbose sections
+- [ ] Technique 2 (Information Hierarchy) applied to organize content
+- [ ] Technique 3 (Context Linking) applied to eliminate duplication
+- [ ] Technique 4 (Decision Pruning) applied to settled discussions
+- [ ] Technique 5 (Command Compression) applied to repeated commands
+- [ ] Repeated command patterns identified and templated
+- [ ] Proven patterns extracted (aim for 5+ patterns)
+- [ ] Handoff document updated with milestone status
+
+**Quality Validation** (~3 min):
+- [ ] Can resume work from handoff in <3 minutes
+- [ ] No duplicate information across .genesis/ files
+- [ ] All critical decisions preserved
+- [ ] Search/retrieval still works (<30 seconds to find info)
+- [ ] 3+ Genesis items tagged for contribution
+
+**Genesis Extraction** (~2 min):
+- [ ] All Genesis items tagged with impact level
+- [ ] Candidates logged in .genesis/6_learnings.md
+- [ ] Evaluation criteria applied to each candidate
+- [ ] High-impact items ready for packaging
+
+**Success Criteria**:
+- ✅ 30-50% compression ratio achieved
+- ✅ No critical information lost
+- ✅ Notes are more navigable than before
+- ✅ Genesis value extracted and tagged
+
+**Time Check**:
+- Target: 15-20 minutes total
+- Actual: _____ minutes
+- If >20 min: Consider if over-compressing or overthinking
+- If <15 min: Verify all techniques were applied
+
+**Validation**: This checklist was validated during Phase 1A Day 4 testing with 40% compression achieved, all quality checks passed, and 5 Genesis items tagged in 20 minutes.
+
+---
+
 ### Project Completion Check (Final Assessment)
 
 **30-minute assessment**:

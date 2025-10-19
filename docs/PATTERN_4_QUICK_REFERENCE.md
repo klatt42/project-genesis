@@ -27,6 +27,8 @@
 6. Update handoff
 7. Tag 3+ Genesis items
 
+**Checklist**: See `PATTERN_4_VALIDATION.md` - Milestone Compression Checklist
+
 ### Project Complete (30-45 min)
 1. Final compression
 2. Extract all Genesis patterns
