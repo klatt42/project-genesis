@@ -1,7 +1,7 @@
 # Project Genesis - Kickoff Checklist
 
-**Version**: 2.0
-**Last Updated**: October 19, 2025
+**Version**: 2.1
+**Last Updated**: October 19, 2025 (Phase 1A Day 2)
 **Purpose**: Complete checklist for starting a new Genesis project
 
 ---
@@ -65,7 +65,26 @@
 
 ## Project Setup
 
-### 5. Initialize Next.js Project
+### 5. Initialize Genesis Note-Taking System ⭐ NEW
+
+**Genesis Standard**: Set up structured notes for context tracking and thread transitions
+
+- [ ] Copy note templates: `cp ~/Developer/projects/project-genesis/templates/.genesis/*.md ./.genesis/`
+- [ ] Copy claude.md template: `cp ~/Developer/projects/project-genesis/templates/claude.md ./claude.md`
+- [ ] Customize claude.md with project details:
+  - [ ] Project name and type
+  - [ ] Repository URL
+  - [ ] Supabase credentials
+  - [ ] Target audience
+  - [ ] Success metrics
+- [ ] Initialize 1_discovery.md with project requirements
+- [ ] Commit template files to git
+
+**Why This Matters**: Enables seamless thread transitions, prevents context loss, tracks decisions and learnings
+
+**Reference**: [Genesis Note-Taking System Guide](./GENESIS_NOTE_SYSTEM.md)
+
+### 6. Initialize Next.js Project
 
 - [ ] Create Next.js app: `npx create-next-app@latest --typescript --tailwind --app`
 - [ ] Install Supabase client: `npm install @supabase/supabase-js @supabase/ssr`

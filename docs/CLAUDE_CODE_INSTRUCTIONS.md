@@ -1,7 +1,7 @@
 # Claude Code Instructions for Genesis Projects
 
-**Version**: 2.0
-**Last Updated**: October 19, 2025
+**Version**: 2.1
+**Last Updated**: October 19, 2025 (Phase 1A Day 2)
 **Purpose**: Command patterns and workflows for Claude Code with Genesis
 
 ---
@@ -9,11 +9,12 @@
 ## Table of Contents
 
 1. [Project Setup Commands](#project-setup-commands)
-2. [Schema Modification Workflow](#schema-modification-workflow)
-3. [Feature Development Commands](#feature-development-commands)
-4. [Database Operations](#database-operations)
-5. [Testing & Validation](#testing--validation)
-6. [Deployment Commands](#deployment-commands)
+2. [Genesis Note-Taking System](#genesis-note-taking-system)
+3. [Schema Modification Workflow](#schema-modification-workflow)
+4. [Feature Development Commands](#feature-development-commands)
+5. [Database Operations](#database-operations)
+6. [Testing & Validation](#testing--validation)
+7. [Deployment Commands](#deployment-commands)
 
 ---
 
@@ -46,6 +47,69 @@ claude-code "Configure Supabase type generation with npm script and environment 
 # 4. Generate initial types
 # 5. Update Supabase client to use generated types
 ```
+
+---
+
+## Genesis Note-Taking System
+
+### Overview
+
+Genesis projects use a **structured note-taking system** (Pattern 3) to maintain context, track progress, and enable seamless thread transitions. All notes are stored in the `.genesis/` directory.
+
+**Complete Documentation**: See [GENESIS_NOTE_SYSTEM.md](./GENESIS_NOTE_SYSTEM.md)
+
+### The 7 Note Files
+
+Every Genesis project should include these files in `.genesis/`:
+
+1. **1_discovery.md** - Requirements, user research, project planning
+2. **2_decisions.md** - Technical decisions with rationale and alternatives
+3. **3_prompts.md** - Effective prompts that generated great results
+4. **4_commands.md** - Sequential command history with progress tracking
+5. **5_errors.md** - Error solutions database (searchable reference)
+6. **6_learnings.md** - Insights, patterns, and discoveries
+7. **7_handoff.md** - Thread transition handoffs (critical for context continuity)
+
+### Quick Setup for New Projects
+
+```bash
+# Copy Genesis note templates to your project
+mkdir .genesis
+cp ~/Developer/projects/project-genesis/templates/.genesis/*.md ./.genesis/
+
+# Copy claude.md template
+cp ~/Developer/projects/project-genesis/templates/claude.md ./claude.md
+
+# Customize claude.md with your project details
+# [Edit placeholders like [Project Name], [Repository URL], etc.]
+```
+
+### Using Notes During Development
+
+**Update notes in real-time**:
+- **4_commands.md**: After every command sequence
+- **5_errors.md**: Immediately when errors occur
+- **3_prompts.md**: When Claude produces excellent output
+- **7_handoff.md**: BEFORE closing any thread
+- **6_learnings.md**: At end of session or major milestones
+- **2_decisions.md**: After architecture/technical decisions
+
+**Before ending a Claude thread**:
+```bash
+# CRITICAL: Update handoff before closing thread
+# Edit .genesis/7_handoff.md with:
+# - Current position (exact file, line, task)
+# - Next 3 actions
+# - Recent command history
+# - Known issues
+# - New thread starter prompt
+```
+
+### Note Templates Location
+
+All templates available at:
+- **Templates**: `~/Developer/projects/project-genesis/templates/`
+- **Documentation**: `~/Developer/projects/project-genesis/docs/GENESIS_NOTE_SYSTEM.md`
 
 ---
 
