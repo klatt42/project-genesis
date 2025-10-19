@@ -17,32 +17,38 @@
 - **Impact**: Prevents 85% of database type errors, saves 40 min/project
 - **Location**: `docs/patterns/STACK_SETUP.md#schema-to-typescript-sync-pattern`
 
+**Pattern 2: API Response Validation**
+- **Status**: ✅ Complete (Pending Commit)
+- **Documentation**: `docs/patterns/STACK_SETUP.md#external-api-response-validation-pattern`
+- **Impact**: Prevents 15-20 min debugging per API integration
+- **Source**: PastorAid Hymnary.org API
+- **Solution**: Type guards and response adapters
+
+**Pattern 3: Hybrid ID System**
+- **Status**: ✅ Complete (Pending Commit)
+- **Documentation**: `GENESIS_KERNEL.md#hybrid-id-system-pattern`
+- **Impact**: User-friendly URLs + UUID security
+- **Source**: PastorAid event management
+- **Solution**: UUID (primary) + SERIAL (user-facing)
+
+**Pattern 4: RLS SECURITY DEFINER**
+- **Status**: ✅ Complete (Pending Commit)
+- **Documentation**: `docs/patterns/STACK_SETUP.md#rls-security-definer-pattern`
+- **Impact**: Secure elevated operations without service key exposure
+- **Source**: PastorAid auth and deletion flows
+- **Solution**: PostgreSQL SECURITY DEFINER functions
+
 ### In Progress 🔄
 
-**None** - Ready for Pattern 2
+**None** - All Day 1 patterns complete!
 
 ### Pending ⏳
 
-**Pattern 2: API Response Validation** (Next)
-- **Problem**: External APIs return unpredictable structure (Hymnary.org)
-- **Solution**: Validate format before mapping
-- **Source**: PastorAid hymn finder
-- **Estimated**: 30 minutes
-
-**Pattern 3: RLS Security Definer**
-- **Problem**: RLS policies block during signup
-- **Solution**: SECURITY DEFINER database function
-- **Source**: PastorAid auth flow
-
-**Pattern 4: Hybrid ID Strategy**
-- **Problem**: Mixing database UUIDs with external string IDs
-- **Solution**: Validate ID format before insertion
-- **Source**: PastorAid hymn save failure
-
-**Pattern 5: AI Response Sanitization**
+**Pattern 5: AI Response Sanitization** (Optional for later)
 - **Problem**: Claude API JSON has control characters
 - **Solution**: Clean response before parsing
 - **Source**: PastorAid theology research
+- **Note**: Not in current scope
 
 ---
 

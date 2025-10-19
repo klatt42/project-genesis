@@ -196,6 +196,125 @@ Genesis learns and reuses proven patterns. Key pattern categories:
 - **soft-delete**: Safe data deletion
 - **schema-typescript-sync** ⭐ NEW: Auto-generate TypeScript types from Supabase schema ([Guide](docs/patterns/STACK_SETUP.md#schema-to-typescript-sync-pattern-auto-generate-types))
 
+### Data Architecture
+
+#### Hybrid ID System Pattern
+
+**Problem**: Database UUIDs are secure but not user-friendly. Auto-increment IDs are simple but expose database size and create security risks.
+
+**Solution**: Use UUIDs as primary keys internally, add auto-increment user-facing IDs for readability.
+
+**Implementation**:
+
+```sql
+-- Database schema with both ID types
+CREATE TABLE events (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  event_number SERIAL UNIQUE NOT NULL,  -- User-facing ID
+  title TEXT NOT NULL,
+  start_time TIMESTAMPTZ NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Index for fast lookups
+CREATE INDEX idx_events_event_number ON events(event_number);
+```
+
+**TypeScript Usage**:
+
+```typescript
+// lib/types/database.ts (auto-generated from schema)
+import type { Database } from '@/lib/types/database'
+
+type Event = Database['public']['Tables']['events']['Row']
+// Event has both: id (UUID) and event_number (number)
+
+// API route - Accept user-facing ID
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const eventId = params.id
+
+  // Check if UUID or event_number
+  const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(eventId)
+
+  let query = supabase.from('events').select('*')
+
+  if (isUuid) {
+    // Internal API call with UUID
+    query = query.eq('id', eventId)
+  } else {
+    // User-facing URL with event_number
+    const eventNumber = parseInt(eventId, 10)
+    if (isNaN(eventNumber)) {
+      return NextResponse.json({ error: 'Invalid event ID' }, { status: 400 })
+    }
+    query = query.eq('event_number', eventNumber)
+  }
+
+  const { data, error } = await query.single()
+
+  if (error || !data) {
+    return NextResponse.json({ error: 'Event not found' }, { status: 404 })
+  }
+
+  return NextResponse.json({ event: data })
+}
+```
+
+**User-Facing Display**:
+
+```typescript
+// Display to users
+function EventCard({ event }: { event: Event }) {
+  return (
+    <div>
+      <h3>Event #{event.event_number}</h3>  {/* User-friendly */}
+      <p>{event.title}</p>
+      <Link href={`/events/${event.event_number}`}>  {/* Clean URLs */}
+        View Details
+      </Link>
+    </div>
+  )
+}
+
+// vs internal operations use UUID
+async function deleteEvent(eventId: string) {
+  // Internal operations always use UUID
+  const { error } = await supabase
+    .from('events')
+    .delete()
+    .eq('id', eventId)  // UUID for security
+}
+```
+
+**Benefits**:
+- ✅ **User-Friendly URLs**: `/events/42` instead of `/events/550e8400-e29b-41d4-a716-446655440000`
+- ✅ **Security**: UUIDs prevent enumeration attacks
+- ✅ **Flexibility**: Accept both ID types in APIs
+- ✅ **Readability**: Event #42 is easier to reference than UUID
+- ✅ **Database Benefits**: UUID foreign keys remain secure
+
+**When to Use**:
+- Customer-facing resources (orders, tickets, invoices)
+- Support references ("Check Event #42")
+- Public URLs that users share
+- Any entity users reference verbally
+
+**When NOT to Use**:
+- Purely internal entities (logs, sessions)
+- High-frequency inserts (SERIAL has slight overhead)
+- Tables with no user interaction
+- Temporary/ephemeral data
+
+**Pattern Source**: PastorAid Project (October 2025)
+**Impact**: High - improves UX without sacrificing security
+**Complexity**: Low - 1 extra column + index
+**Recommended**: All user-facing entities
+
+---
+
 ### API Patterns
 - **rest-api-supabase**: RESTful endpoints with Supabase
 - **graphql-hasura**: GraphQL with Supabase + Hasura
