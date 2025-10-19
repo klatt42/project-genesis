@@ -829,7 +829,17 @@ The `.genesis/` note-taking system is **Pattern 3** from PastorAid project learn
 
 ---
 
-**Documentation Version**: 1.0  
-**Last Updated**: [Date]  
-**Maintained By**: Project Genesis  
+**Documentation Version**: 1.0
+**Last Updated**: October 19, 2025
+**Maintained By**: Project Genesis
 **Questions/Improvements**: Document in your `6_learnings.md` and contribute back to Genesis
+
+---
+
+## Related Documentation
+
+- [GENESIS_UPDATE_WORKFLOW.md](./GENESIS_UPDATE_WORKFLOW.md) - How to contribute learnings back to Genesis
+- [CLAUDE_CODE_INSTRUCTIONS.md](./CLAUDE_CODE_INSTRUCTIONS.md) - Genesis Note System integration
+- [PROJECT_KICKOFF_CHECKLIST.md](./PROJECT_KICKOFF_CHECKLIST.md) - Note system setup steps
+- [patterns/STACK_SETUP.md](./patterns/STACK_SETUP.md) - Pattern 4: Smart Context Compaction
+- Templates: `~/Developer/projects/project-genesis/templates/.genesis/`
