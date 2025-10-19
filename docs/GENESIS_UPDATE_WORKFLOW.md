@@ -750,8 +750,9 @@ git push
 
 ## 📚 Related Documentation
 
-- `docs/patterns/STACK_SETUP.md` - Pattern 4: Smart Context Compaction
-- `docs/GENESIS_NOTE_SYSTEM.md` - .genesis/ system guide
+- [patterns/STACK_SETUP.md](./patterns/STACK_SETUP.md) - Pattern 4: Smart Context Compaction techniques
+- [PATTERN_4_VALIDATION.md](./PATTERN_4_VALIDATION.md) - Measure Pattern 4 effectiveness
+- [GENESIS_NOTE_SYSTEM.md](./GENESIS_NOTE_SYSTEM.md) - .genesis/ system guide
 - `.genesis/6_learnings.md` - Primary Genesis impact tracking file
 - `CHANGELOG.md` - Genesis version history
 
