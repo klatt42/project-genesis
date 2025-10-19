@@ -29,6 +29,45 @@
 
 ---
 
+## 📦 Compression Status
+
+**Last Compressed**: [Date]
+**Compression Type**: [Daily / Milestone / Final]
+**Technique Used**: [Technique 1-5 from patterns/STACK_SETUP.md]
+
+**Thread Notes**:
+- **Compressed**: ✅ Yes / ❌ No
+- **Detail Level**: Critical Only / Important+ / Full Context
+- **Searchable**: ✅ Yes / ❌ No
+
+**Genesis Extraction**:
+- **Patterns Identified**: [X]
+- **Ready to Package**: [X]
+- **Packaged**: [X]
+- **See**: .genesis/6_learnings.md - Genesis Update Recommendations
+
+**Quality Checks**:
+- [ ] Can resume work in <3 minutes from this handoff
+- [ ] No duplicate information across .genesis/ files
+- [ ] All critical decisions compressed to outcomes
+- [ ] Working commands grouped/templated
+- [ ] Genesis patterns extracted
+
+**Compression Metrics**:
+
+| File | Before | After | Ratio |
+|------|--------|-------|-------|
+| 2_decisions.md | [X] | [X] | [X]% |
+| 4_commands.md | [X] | [X] | [X]% |
+| 5_errors.md | [X] | [X] | [X]% |
+
+**Related Docs**:
+- `patterns/STACK_SETUP.md` - Compression techniques
+- `PATTERN_4_VALIDATION.md` - Effectiveness measurement
+- `.genesis/6_learnings.md` - Pattern 4 dashboard
+
+---
+
 ## 🚀 New Thread Starter Prompt
 
 ```

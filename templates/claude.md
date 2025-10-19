@@ -257,6 +257,98 @@ Next to Load:
 
 ---
 
+## Pattern 4: Smart Context Compaction - Implementation Guide
+
+**Purpose**: Systematically compress context and contribute to Genesis
+
+### Daily Compression Workflow (5-10 minutes)
+
+**End of Every Session**:
+1. Review today's notes in all `.genesis/` files
+2. Mark completed items with ✅
+3. Compress verbose entries (see techniques below)
+4. Add cross-references where appropriate
+5. Extract "Genesis Impact" items to `6_learnings.md`
+6. Update command progress indicators
+
+**Quick Techniques**:
+- **Technique 1**: Progressive Summarization (raw → compressed → essential)
+- **Technique 2**: Information Hierarchy (Critical > Important > Useful)
+- **Technique 3**: Context Linking (reference instead of repeat)
+
+**Tracking**: Log in `.genesis/6_learnings.md` - Daily Compression Log
+
+### Milestone Compression Workflow (15-20 minutes)
+
+**At Feature/Phase Complete**:
+1. Create milestone marker in relevant files
+2. Review all notes since last milestone
+3. Apply Technique 3 (Linking) to reduce duplication
+4. Use Technique 4 (Decision Pruning) on settled topics
+5. Extract proven patterns to "Patterns to Remember"
+6. Update `.genesis/7_handoff.md` with compressed state
+7. Tag Genesis update candidates (target: 3+ per milestone)
+
+**Advanced Techniques**:
+- **Technique 4**: Decision Pruning (outcomes, not exploration)
+- **Technique 5**: Command Compression (group → template → reference)
+
+**Tracking**: Log in `.genesis/6_learnings.md` - Milestone Compression Log
+
+### Genesis Contribution Workflow
+
+**Throughout Project**:
+- Tag insights with "Genesis Impact" field in `.genesis/6_learnings.md`
+- Use evaluation criteria from `GENESIS_UPDATE_WORKFLOW.md`
+- Package contributions at project completion
+
+**At Project Complete** (30-45 minutes):
+1. Final compression of all `.genesis/` files
+2. Extract all Genesis patterns to single document
+3. Create project retrospective
+4. Package Genesis contributions
+5. Submit to Genesis repository
+
+**Genesis Update Process**:
+1. **Capture**: Note "Genesis Impact: Major/Critical" in learnings
+2. **Evaluate**: Use criteria from `GENESIS_UPDATE_WORKFLOW.md` Phase 2
+3. **Package**: Use templates from `GENESIS_UPDATE_WORKFLOW.md` Phase 3
+4. **Contribute**: Follow method from `GENESIS_UPDATE_WORKFLOW.md` Phase 4
+5. **Track**: Monitor integration in `claude.md` - Genesis Update Tracking
+
+### Validation & Measurement
+
+**Self-Assessment** (Monthly):
+- Thread transition time: Target <13 minutes
+- Compression ratio: Target 30-50% reduction
+- Genesis contributions: Target 5+ per project
+- Knowledge retrieval: Target <30 seconds
+
+**Dashboard**: Track in `.genesis/6_learnings.md` - Pattern 4 Dashboard
+
+**Detailed Measurement**: See `PATTERN_4_VALIDATION.md`
+
+### Pattern 4 Documentation Reference
+
+**Primary Docs**:
+- `patterns/STACK_SETUP.md` - All 5 compression techniques
+- `GENESIS_UPDATE_WORKFLOW.md` - Complete contribution process
+- `PATTERN_4_VALIDATION.md` - Measurement framework
+
+**Quick Reference**:
+- Daily compression: 5-10 min, 5 steps
+- Milestone compression: 15-20 min, 7 steps
+- Project completion: 30-45 min, full Genesis extraction
+- Assessment: Monthly, 4 core metrics
+
+**Success Criteria**:
+- Pattern 4 feels natural, not burdensome
+- Thread transitions take <13 minutes
+- 5+ Genesis contributions per project
+- Knowledge instantly retrievable
+
+---
+
 ## Common Commands
 
 ### Claude Code Commands

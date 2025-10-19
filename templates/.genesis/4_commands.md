@@ -758,3 +758,32 @@ claude-code init
 **Last Command Executed**: [Command]  
 **Timestamp**: [Date/Time]  
 **Execution Status**: [Success/Failure]
+
+---
+
+## 📦 Compression Tracking
+
+**File Compression Status**:
+- **Last Compressed**: [Date]
+- **Compression Type**: [Daily / Milestone / Final]
+- **Entries Before**: [X]
+- **Entries After**: [X]
+- **Reduction**: [X]%
+
+**Compression Checklist**:
+- [ ] Verbose entries compressed (Technique 1: Progressive Summarization)
+- [ ] Information organized by priority (Technique 2: Hierarchy)
+- [ ] Cross-references added (Technique 3: Context Linking)
+- [ ] Exploration pruned to outcomes (Technique 4: Decision Pruning)
+- [ ] Commands grouped/templated (Technique 5: Command Compression)
+
+**Genesis Patterns in This File**: [X] identified
+**See**: .genesis/6_learnings.md - Genesis Update Recommendations
+
+**Next Compression**: [Date/Milestone trigger]
+
+**Related Docs**:
+- `patterns/STACK_SETUP.md` - Techniques reference
+- `.genesis/6_learnings.md` - Pattern 4 dashboard
+
+---
