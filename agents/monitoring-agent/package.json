@@ -1,0 +1,29 @@
+{
+  "name": "@genesis/monitoring-agent",
+  "version": "1.0.0",
+  "description": "Genesis Agent SDK - Production monitoring and observability",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test": "echo \"Tests not yet implemented\" && exit 0"
+  },
+  "keywords": [
+    "monitoring",
+    "observability",
+    "sentry",
+    "analytics",
+    "performance",
+    "uptime"
+  ],
+  "author": "Genesis Agent SDK",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

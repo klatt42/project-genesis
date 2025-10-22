@@ -1,0 +1,25 @@
+{
+  "name": "@genesis/component-library",
+  "version": "1.0.0",
+  "description": "Genesis Agent SDK - Shared Component Library",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "genesis",
+    "components",
+    "library",
+    "sharing"
+  ],
+  "author": "Genesis Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}

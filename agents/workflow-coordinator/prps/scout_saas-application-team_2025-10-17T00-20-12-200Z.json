@@ -1,0 +1,418 @@
+{
+  "version": "1.0",
+  "projectName": "saas-application-team",
+  "createdAt": "2025-10-17T00:20:12.199Z",
+  "scoutAgent": {
+    "version": "1.0.0",
+    "qualityScore": 10
+  },
+  "projectVision": {
+    "overallGoal": "Build a scalable SaaS application (saas-application-team) with 2 core features, providing users with User authentication, Team management capabilities.",
+    "targetUsers": [
+      "Customers",
+      "Team members"
+    ],
+    "successCriteria": [
+      "Project builds without errors",
+      "All tests pass",
+      "Code quality score >= 8/10",
+      "User registration and login work",
+      "Protected routes require authentication",
+      "Dashboard loads user-specific data",
+      "User can perform CRUD operations",
+      "Deploys successfully to Netlify",
+      "All Genesis validation checks pass"
+    ],
+    "userPainPoints": [
+      "Existing solutions are too complex or expensive",
+      "Need for better collaboration and team management",
+      "Lack of customization in current tools"
+    ],
+    "proposedSolution": "A full-featured SaaS application with authentication, user management, and User authentication, Team management. Built on Next.js 14 with Supabase backend, ensuring scalability and security. Implements Genesis patterns for maintainability and quality."
+  },
+  "technicalContext": {
+    "stack": {
+      "frontend": [
+        "Next.js 14",
+        "React 18",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Next.js API Routes",
+        "Server Actions"
+      ],
+      "database": [
+        "Supabase PostgreSQL"
+      ],
+      "deployment": [
+        "Netlify"
+      ],
+      "integrations": [
+        "SUPABASE",
+        "NETLIFY"
+      ]
+    },
+    "genesisPatterns": [
+      {
+        "name": "SAAS_ARCHITECTURE.md",
+        "path": "docs/SAAS_ARCHITECTURE.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "STACK_SETUP.md",
+        "path": "docs/STACK_SETUP.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "supabase-client",
+        "path": "docs/supabase-client",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "authentication-flow",
+        "path": "docs/authentication-flow",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      }
+    ],
+    "keyDependencies": [
+      "next@14.2.0",
+      "react@18.3.1",
+      "typescript@5.x",
+      "tailwindcss@3.x",
+      "@supabase/supabase-js@2.x"
+    ],
+    "environmentVariables": [
+      {
+        "name": "NEXT_PUBLIC_SUPABASE_URL",
+        "description": "Supabase project URL",
+        "required": true
+      },
+      {
+        "name": "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "description": "Supabase anonymous key",
+        "required": true
+      }
+    ],
+    "potentialGotchas": [
+      {
+        "issue": "Row Level Security (RLS) not enabled on tables",
+        "solution": "Enable RLS and create appropriate policies in Supabase dashboard",
+        "prevention": "Include RLS setup in database migration scripts"
+      },
+      {
+        "issue": "Client/Server component confusion in Next.js 14",
+        "solution": "Use \"use client\" directive for components with hooks or browser APIs",
+        "prevention": "Follow Genesis component patterns, validate with TypeScript"
+      },
+      {
+        "issue": "Missing or incorrect environment variables",
+        "solution": "Copy .env.example to .env.local and fill in all values",
+        "prevention": "Add environment variable validation at app startup"
+      }
+    ]
+  },
+  "implementationBlueprint": {
+    "phases": [
+      {
+        "name": "Project Setup",
+        "description": "Initialize project structure and dependencies",
+        "estimatedHours": 0.5,
+        "tasks": [
+          {
+            "name": "Scaffold project structure",
+            "description": "Create saas-app project using Genesis scaffolding agent",
+            "agent": "scaffolding",
+            "estimatedMinutes": 5,
+            "dependencies": [],
+            "genesisPattern": "SAAS_ARCHITECTURE.md"
+          },
+          {
+            "name": "Install dependencies",
+            "description": "Run npm install and verify all packages",
+            "agent": "build",
+            "estimatedMinutes": 10,
+            "dependencies": [
+              "Scaffold project structure"
+            ]
+          },
+          {
+            "name": "Configure environment",
+            "description": "Set up .env.local with required variables",
+            "agent": "build",
+            "estimatedMinutes": 15,
+            "dependencies": [
+              "Scaffold project structure"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Core Features",
+        "description": "Implement main application features",
+        "estimatedHours": 1,
+        "tasks": [
+          {
+            "name": "Implement User authentication",
+            "description": "Create User authentication following Genesis patterns",
+            "agent": "build",
+            "estimatedMinutes": 30,
+            "dependencies": [
+              "Configure environment"
+            ],
+            "genesisPattern": "authentication-flow"
+          },
+          {
+            "name": "Implement Team management",
+            "description": "Create Team management following Genesis patterns",
+            "agent": "build",
+            "estimatedMinutes": 30,
+            "dependencies": [
+              "Implement User authentication"
+            ],
+            "genesisPattern": "generic-component"
+          }
+        ]
+      },
+      {
+        "name": "Third-Party Integrations",
+        "description": "Set up and configure external service integrations",
+        "estimatedHours": 0.75,
+        "tasks": [
+          {
+            "name": "Setup SUPABASE integration",
+            "description": "Configure supabase and create integration layer",
+            "agent": "build",
+            "estimatedMinutes": 45,
+            "dependencies": [
+              "Implement Team management"
+            ],
+            "genesisPattern": "supabase-integration"
+          }
+        ]
+      },
+      {
+        "name": "Validation & Testing",
+        "description": "Validate code quality and test functionality",
+        "estimatedHours": 1,
+        "tasks": [
+          {
+            "name": "Validate code quality",
+            "description": "Run genesis_validate_implementation on all files",
+            "agent": "validator",
+            "estimatedMinutes": 20,
+            "dependencies": [
+              "Setup SUPABASE integration"
+            ]
+          },
+          {
+            "name": "Run tests",
+            "description": "Execute all automated tests",
+            "agent": "validator",
+            "estimatedMinutes": 15,
+            "dependencies": [
+              "Validate code quality"
+            ]
+          },
+          {
+            "name": "Build production bundle",
+            "description": "Run npm run build and verify success",
+            "agent": "build",
+            "estimatedMinutes": 10,
+            "dependencies": [
+              "Run tests"
+            ]
+          },
+          {
+            "name": "Final validation",
+            "description": "Verify all validation gates pass",
+            "agent": "validator",
+            "estimatedMinutes": 15,
+            "dependencies": [
+              "Build production bundle"
+            ]
+          }
+        ]
+      }
+    ],
+    "criticalPath": [
+      "Scaffold project structure",
+      "Install dependencies",
+      "Configure environment",
+      "Implement User authentication",
+      "Implement Team management",
+      "Setup SUPABASE integration",
+      "Validate code quality",
+      "Run tests",
+      "Build production bundle",
+      "Final validation"
+    ],
+    "parallelizable": [
+      [
+        "User authentication",
+        "Team management"
+      ]
+    ]
+  },
+  "validationGates": {
+    "level1_fileStructure": {
+      "requiredFiles": [
+        "package.json",
+        "tsconfig.json",
+        "next.config.ts",
+        "tailwind.config.ts",
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/globals.css",
+        ".env.example",
+        "README.md",
+        "lib/supabase-client.ts",
+        "middleware.ts",
+        "app/(auth)/login/page.tsx"
+      ],
+      "requiredDirectories": [
+        "app",
+        "components",
+        "lib",
+        "public",
+        "types"
+      ]
+    },
+    "level2_codeQuality": {
+      "minimumScore": 8,
+      "requiredPatterns": [
+        "SAAS_ARCHITECTURE.md",
+        "STACK_SETUP.md",
+        "supabase-client",
+        "authentication-flow"
+      ],
+      "lintingRules": [
+        "typescript-eslint",
+        "next/core-web-vitals"
+      ]
+    },
+    "level3_functionality": {
+      "requiredTests": [
+        "Build completes successfully",
+        "Authentication flow works",
+        "Protected routes require login"
+      ],
+      "manualChecks": [
+        "Visual inspection of UI matches design",
+        "Mobile responsive layout works correctly",
+        "All interactive elements are functional",
+        "No console errors in browser"
+      ]
+    },
+    "level4_deployment": {
+      "buildCommand": "npm run build",
+      "deploymentTarget": "Netlify",
+      "environmentChecks": [
+        "SUPABASE_configured",
+        "NETLIFY_configured"
+      ]
+    }
+  },
+  "research": {
+    "genesisPatterns": [
+      {
+        "name": "SAAS_ARCHITECTURE.md",
+        "path": "docs/SAAS_ARCHITECTURE.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "STACK_SETUP.md",
+        "path": "docs/STACK_SETUP.md",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "supabase-client",
+        "path": "docs/supabase-client",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      },
+      {
+        "name": "authentication-flow",
+        "path": "docs/authentication-flow",
+        "relevance": 9,
+        "keyPoints": [
+          "Follow Genesis architecture",
+          "Use TypeScript strictly",
+          "Include comprehensive error handling",
+          "Validate to 8+/10 standard"
+        ]
+      }
+    ],
+    "externalResearch": [
+      {
+        "source": "Genesis Documentation",
+        "findings": [
+          "Use Genesis templates for consistency",
+          "Enforce 8+/10 quality standard",
+          "Follow BMAD PRP structure"
+        ],
+        "relevanceScore": 10,
+        "timestamp": "2025-10-17T00:20:12.199Z"
+      }
+    ],
+    "bestPractices": [
+      "Use Genesis templates for consistency",
+      "Enforce 8+/10 quality standard",
+      "Follow BMAD PRP structure",
+      "Follow Genesis 8+/10 quality standard",
+      "Use TypeScript strictly with no any types",
+      "Include comprehensive error handling",
+      "Add validation at all input points",
+      "Document complex logic with comments",
+      "Follow Next.js 14 App Router conventions",
+      "Implement proper loading states",
+      "Add meaningful error messages"
+    ]
+  },
+  "metadata": {
+    "complexity": "simple",
+    "estimatedTotalHours": 3,
+    "riskFactors": []
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "genesis-agents": {
+      "command": "/home/klatt42/Developer/projects/project-genesis/venv/bin/python",
+      "args": [
+        "/home/klatt42/Developer/projects/project-genesis/genesis-agents-mcp/server.py"
+      ],
+      "env": {}
+    }
+  }
+}

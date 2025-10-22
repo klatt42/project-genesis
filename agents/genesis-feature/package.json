@@ -1,0 +1,26 @@
+{
+  "name": "@genesis/feature-agent",
+  "version": "1.0.0",
+  "description": "Genesis autonomous feature agent for pattern-based code generation",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "genesis",
+    "feature",
+    "automation",
+    "code-generation",
+    "patterns"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

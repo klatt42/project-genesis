@@ -1,0 +1,369 @@
+{
+  "success": true,
+  "session": {
+    "sessionId": "build-1760660085726",
+    "projectName": "landing-page-plumbing",
+    "projectPath": "test-builds/landing-page-plumbing",
+    "planFile": "",
+    "startTime": "2025-10-17T00:14:45.727Z",
+    "completedTasks": [
+      "task-1",
+      "task-2",
+      "task-3",
+      "task-4",
+      "task-5",
+      "task-6",
+      "task-7",
+      "task-8",
+      "task-9",
+      "task-10",
+      "task-11"
+    ],
+    "failedTasks": [],
+    "checkpoints": [
+      {
+        "id": "checkpoint-1",
+        "timestamp": "2025-10-17T00:14:45.732Z",
+        "taskId": "task-1",
+        "taskName": "Scaffold project structure",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-2",
+        "timestamp": "2025-10-17T00:14:45.735Z",
+        "taskId": "task-2",
+        "taskName": "Install dependencies",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-3",
+        "timestamp": "2025-10-17T00:14:45.736Z",
+        "taskId": "task-3",
+        "taskName": "Configure environment",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-4",
+        "timestamp": "2025-10-17T00:14:45.737Z",
+        "taskId": "task-4",
+        "taskName": "Implement Lead capture form",
+        "projectState": {
+          "files": [
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 8.5
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-5",
+        "timestamp": "2025-10-17T00:14:45.738Z",
+        "taskId": "task-5",
+        "taskName": "Implement CRM integration",
+        "projectState": {
+          "files": [
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-6",
+        "timestamp": "2025-10-17T00:14:45.740Z",
+        "taskId": "task-6",
+        "taskName": "Implement Hero section",
+        "projectState": {
+          "files": [
+            "components/HeroSection.tsx",
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 8.5
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-7",
+        "timestamp": "2025-10-17T00:14:46.949Z",
+        "taskId": "task-7",
+        "taskName": "Setup GHL integration",
+        "projectState": {
+          "files": [
+            "components/HeroSection.tsx",
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-8",
+        "timestamp": "2025-10-17T00:14:48.315Z",
+        "taskId": "task-8",
+        "taskName": "Validate code quality",
+        "projectState": {
+          "files": [
+            "components/HeroSection.tsx",
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 7.4
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-9",
+        "timestamp": "2025-10-17T00:14:48.317Z",
+        "taskId": "task-9",
+        "taskName": "Run tests",
+        "projectState": {
+          "files": [
+            "components/HeroSection.tsx",
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-10",
+        "timestamp": "2025-10-17T00:14:48.318Z",
+        "taskId": "task-10",
+        "taskName": "Build production bundle",
+        "projectState": {
+          "files": [
+            "components/HeroSection.tsx",
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-11",
+        "timestamp": "2025-10-17T00:14:48.319Z",
+        "taskId": "task-11",
+        "taskName": "Final validation",
+        "projectState": {
+          "files": [
+            "components/HeroSection.tsx",
+            "components/LeadForm.tsx",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      }
+    ],
+    "status": "completed",
+    "currentTask": "task-11"
+  },
+  "results": [
+    {
+      "taskId": "task-1",
+      "taskName": "Scaffold project structure",
+      "success": true,
+      "startTime": "2025-10-17T00:14:45.727Z",
+      "endTime": "2025-10-17T00:14:45.732Z",
+      "durationMs": 5,
+      "filesCreated": [
+        "package.json",
+        "tsconfig.json",
+        ".gitignore",
+        ".env.example"
+      ],
+      "filesModified": [],
+      "checkpoint": "checkpoint-1"
+    },
+    {
+      "taskId": "task-2",
+      "taskName": "Install dependencies",
+      "success": true,
+      "startTime": "2025-10-17T00:14:45.734Z",
+      "endTime": "2025-10-17T00:14:45.735Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-2"
+    },
+    {
+      "taskId": "task-3",
+      "taskName": "Configure environment",
+      "success": true,
+      "startTime": "2025-10-17T00:14:45.735Z",
+      "endTime": "2025-10-17T00:14:45.736Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-3"
+    },
+    {
+      "taskId": "task-4",
+      "taskName": "Implement Lead capture form",
+      "success": true,
+      "startTime": "2025-10-17T00:14:45.736Z",
+      "endTime": "2025-10-17T00:14:45.738Z",
+      "durationMs": 2,
+      "filesCreated": [
+        "components/LeadForm.tsx"
+      ],
+      "filesModified": [],
+      "validationScore": 8.5,
+      "checkpoint": "checkpoint-4"
+    },
+    {
+      "taskId": "task-5",
+      "taskName": "Implement CRM integration",
+      "success": true,
+      "startTime": "2025-10-17T00:14:45.738Z",
+      "endTime": "2025-10-17T00:14:45.738Z",
+      "durationMs": 0,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-5"
+    },
+    {
+      "taskId": "task-6",
+      "taskName": "Implement Hero section",
+      "success": true,
+      "startTime": "2025-10-17T00:14:45.739Z",
+      "endTime": "2025-10-17T00:14:45.740Z",
+      "durationMs": 1,
+      "filesCreated": [
+        "components/HeroSection.tsx"
+      ],
+      "filesModified": [],
+      "validationScore": 8.5,
+      "checkpoint": "checkpoint-6"
+    },
+    {
+      "taskId": "task-7",
+      "taskName": "Setup GHL integration",
+      "success": true,
+      "startTime": "2025-10-17T00:14:46.948Z",
+      "endTime": "2025-10-17T00:14:46.949Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-7"
+    },
+    {
+      "taskId": "task-8",
+      "taskName": "Validate code quality",
+      "success": true,
+      "startTime": "2025-10-17T00:14:48.314Z",
+      "endTime": "2025-10-17T00:14:48.315Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "validationScore": 7.4,
+      "checkpoint": "checkpoint-8"
+    },
+    {
+      "taskId": "task-9",
+      "taskName": "Run tests",
+      "success": true,
+      "startTime": "2025-10-17T00:14:48.315Z",
+      "endTime": "2025-10-17T00:14:48.317Z",
+      "durationMs": 2,
+      "filesCreated": [],
+      "filesModified": [],
+      "testsRun": 5,
+      "testsPassed": 5,
+      "checkpoint": "checkpoint-9"
+    },
+    {
+      "taskId": "task-10",
+      "taskName": "Build production bundle",
+      "success": true,
+      "startTime": "2025-10-17T00:14:48.317Z",
+      "endTime": "2025-10-17T00:14:48.318Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-10"
+    },
+    {
+      "taskId": "task-11",
+      "taskName": "Final validation",
+      "success": true,
+      "startTime": "2025-10-17T00:14:48.318Z",
+      "endTime": "2025-10-17T00:14:48.319Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-11"
+    }
+  ],
+  "finalValidation": {
+    "isValid": true,
+    "score": 8.2,
+    "issues": [
+      {
+        "file": "typescript",
+        "severity": "critical",
+        "message": "TypeScript compilation failed: components/HeroSection.tsx(3,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists., components/HeroSection.tsx(4,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists., components/HeroSection.tsx(4,22): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists., components/HeroSection.tsx(6,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists., components/LeadForm.tsx(3,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists., components/LeadForm.tsx(4,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists., components/LeadForm.tsx(4,19): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists., components/LeadForm.tsx(6,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists."
+      }
+    ],
+    "recommendations": [
+      "Fix 1 critical issues before proceeding",
+      "Resolve TypeScript compilation errors",
+      "Add proper TypeScript type annotations"
+    ]
+  },
+  "outputPath": "test-builds/landing-page-plumbing",
+  "timing": {
+    "totalMs": 5345,
+    "avgTaskMs": 1.4545454545454546,
+    "validationMs": 5324,
+    "testingMs": 0
+  },
+  "statistics": {
+    "totalTasks": 11,
+    "completedTasks": 11,
+    "failedTasks": 0,
+    "filesCreated": 6,
+    "filesModified": 0,
+    "averageQuality": 2.2181818181818183
+  }
+}

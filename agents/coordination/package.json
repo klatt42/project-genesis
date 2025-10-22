@@ -1,0 +1,25 @@
+{
+  "name": "@genesis/coordination",
+  "version": "1.0.0",
+  "description": "Agent coordination protocol for Genesis SDK",
+  "type": "module",
+  "main": "dist/coordination/index.js",
+  "types": "dist/coordination/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "genesis",
+    "coordination",
+    "agents",
+    "parallelism"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

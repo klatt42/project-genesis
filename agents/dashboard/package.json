@@ -1,0 +1,31 @@
+{
+  "name": "@genesis/dashboard",
+  "version": "1.0.0",
+  "description": "Real-time dashboard for Genesis parallel execution",
+  "type": "module",
+  "main": "dist/dashboard/index.js",
+  "types": "dist/dashboard/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "dashboard": "node dist/dashboard/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "genesis",
+    "dashboard",
+    "tui",
+    "monitoring"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ink": "^4.4.1",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+}

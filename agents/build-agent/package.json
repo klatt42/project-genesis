@@ -1,0 +1,25 @@
+{
+  "name": "@genesis/build-agent",
+  "version": "1.0.0",
+  "description": "Build Agent - Autonomous task executor for Genesis SDK",
+  "type": "module",
+  "main": "dist/build-agent/index.js",
+  "types": "dist/build-agent/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "genesis",
+    "agent",
+    "build",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

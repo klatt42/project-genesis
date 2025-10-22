@@ -1,0 +1,329 @@
+{
+  "success": true,
+  "session": {
+    "sessionId": "build-1760660412206",
+    "projectName": "saas-application-team",
+    "projectPath": "test-saas/saas-application-team",
+    "planFile": "",
+    "startTime": "2025-10-17T00:20:12.207Z",
+    "completedTasks": [
+      "task-1",
+      "task-2",
+      "task-3",
+      "task-4",
+      "task-5",
+      "task-6",
+      "task-7",
+      "task-8",
+      "task-9",
+      "task-10"
+    ],
+    "failedTasks": [],
+    "checkpoints": [
+      {
+        "id": "checkpoint-1",
+        "timestamp": "2025-10-17T00:20:12.211Z",
+        "taskId": "task-1",
+        "taskName": "Scaffold project structure",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-2",
+        "timestamp": "2025-10-17T00:20:12.213Z",
+        "taskId": "task-2",
+        "taskName": "Install dependencies",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-3",
+        "timestamp": "2025-10-17T00:20:12.214Z",
+        "taskId": "task-3",
+        "taskName": "Configure environment",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-4",
+        "timestamp": "2025-10-17T00:20:12.215Z",
+        "taskId": "task-4",
+        "taskName": "Implement User authentication",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-5",
+        "timestamp": "2025-10-17T00:20:12.216Z",
+        "taskId": "task-5",
+        "taskName": "Implement Team management",
+        "projectState": {
+          "files": [
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-6",
+        "timestamp": "2025-10-17T00:20:12.217Z",
+        "taskId": "task-6",
+        "taskName": "Setup SUPABASE integration",
+        "projectState": {
+          "files": [
+            "lib/supabase-client.ts",
+            "package.json",
+            "tsconfig.json"
+          ],
+          "lastValidatedScore": 8.5
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-7",
+        "timestamp": "2025-10-17T00:20:13.266Z",
+        "taskId": "task-7",
+        "taskName": "Validate code quality",
+        "projectState": {
+          "files": [
+            "lib/supabase-client.ts",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 7.2
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-8",
+        "timestamp": "2025-10-17T00:20:13.267Z",
+        "taskId": "task-8",
+        "taskName": "Run tests",
+        "projectState": {
+          "files": [
+            "lib/supabase-client.ts",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-9",
+        "timestamp": "2025-10-17T00:20:13.268Z",
+        "taskId": "task-9",
+        "taskName": "Build production bundle",
+        "projectState": {
+          "files": [
+            "lib/supabase-client.ts",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      },
+      {
+        "id": "checkpoint-10",
+        "timestamp": "2025-10-17T00:20:13.269Z",
+        "taskId": "task-10",
+        "taskName": "Final validation",
+        "projectState": {
+          "files": [
+            "lib/supabase-client.ts",
+            "package.json",
+            "tsconfig.json",
+            "tsconfig.tsbuildinfo"
+          ],
+          "lastValidatedScore": 0
+        },
+        "canRollback": true
+      }
+    ],
+    "status": "completed",
+    "currentTask": "task-10"
+  },
+  "results": [
+    {
+      "taskId": "task-1",
+      "taskName": "Scaffold project structure",
+      "success": true,
+      "startTime": "2025-10-17T00:20:12.207Z",
+      "endTime": "2025-10-17T00:20:12.211Z",
+      "durationMs": 4,
+      "filesCreated": [
+        "package.json",
+        "tsconfig.json",
+        ".gitignore",
+        ".env.example"
+      ],
+      "filesModified": [],
+      "checkpoint": "checkpoint-1"
+    },
+    {
+      "taskId": "task-2",
+      "taskName": "Install dependencies",
+      "success": true,
+      "startTime": "2025-10-17T00:20:12.212Z",
+      "endTime": "2025-10-17T00:20:12.213Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-2"
+    },
+    {
+      "taskId": "task-3",
+      "taskName": "Configure environment",
+      "success": true,
+      "startTime": "2025-10-17T00:20:12.213Z",
+      "endTime": "2025-10-17T00:20:12.214Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-3"
+    },
+    {
+      "taskId": "task-4",
+      "taskName": "Implement User authentication",
+      "success": true,
+      "startTime": "2025-10-17T00:20:12.215Z",
+      "endTime": "2025-10-17T00:20:12.215Z",
+      "durationMs": 0,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-4"
+    },
+    {
+      "taskId": "task-5",
+      "taskName": "Implement Team management",
+      "success": true,
+      "startTime": "2025-10-17T00:20:12.215Z",
+      "endTime": "2025-10-17T00:20:12.216Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-5"
+    },
+    {
+      "taskId": "task-6",
+      "taskName": "Setup SUPABASE integration",
+      "success": true,
+      "startTime": "2025-10-17T00:20:12.216Z",
+      "endTime": "2025-10-17T00:20:12.218Z",
+      "durationMs": 2,
+      "filesCreated": [
+        "lib/supabase-client.ts"
+      ],
+      "filesModified": [],
+      "validationScore": 8.5,
+      "checkpoint": "checkpoint-6"
+    },
+    {
+      "taskId": "task-7",
+      "taskName": "Validate code quality",
+      "success": true,
+      "startTime": "2025-10-17T00:20:13.264Z",
+      "endTime": "2025-10-17T00:20:13.266Z",
+      "durationMs": 2,
+      "filesCreated": [],
+      "filesModified": [],
+      "validationScore": 7.2,
+      "checkpoint": "checkpoint-7"
+    },
+    {
+      "taskId": "task-8",
+      "taskName": "Run tests",
+      "success": true,
+      "startTime": "2025-10-17T00:20:13.266Z",
+      "endTime": "2025-10-17T00:20:13.267Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "testsRun": 5,
+      "testsPassed": 5,
+      "checkpoint": "checkpoint-8"
+    },
+    {
+      "taskId": "task-9",
+      "taskName": "Build production bundle",
+      "success": true,
+      "startTime": "2025-10-17T00:20:13.267Z",
+      "endTime": "2025-10-17T00:20:13.268Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-9"
+    },
+    {
+      "taskId": "task-10",
+      "taskName": "Final validation",
+      "success": true,
+      "startTime": "2025-10-17T00:20:13.268Z",
+      "endTime": "2025-10-17T00:20:13.269Z",
+      "durationMs": 1,
+      "filesCreated": [],
+      "filesModified": [],
+      "checkpoint": "checkpoint-10"
+    }
+  ],
+  "finalValidation": {
+    "isValid": true,
+    "score": 8.1,
+    "issues": [
+      {
+        "file": "typescript",
+        "severity": "critical",
+        "message": "TypeScript compilation failed: lib/supabase-client.ts(1,30): error TS2307: Cannot find module '@supabase/supabase-js' or its corresponding type declarations."
+      }
+    ],
+    "recommendations": [
+      "Fix 1 critical issues before proceeding",
+      "Resolve TypeScript compilation errors"
+    ]
+  },
+  "outputPath": "test-saas/saas-application-team",
+  "timing": {
+    "totalMs": 3609,
+    "avgTaskMs": 1.4,
+    "validationMs": 3593,
+    "testingMs": 0
+  },
+  "statistics": {
+    "totalTasks": 10,
+    "completedTasks": 10,
+    "failedTasks": 0,
+    "filesCreated": 5,
+    "filesModified": 0,
+    "averageQuality": 1.5699999999999998
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@genesis/workflow-coordinator",
+  "version": "1.0.0",
+  "description": "Workflow Coordinator - Scout → Plan → Build orchestrator for Genesis SDK",
+  "type": "module",
+  "main": "dist/workflow-coordinator/index.js",
+  "types": "dist/workflow-coordinator/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "genesis",
+    "workflow",
+    "orchestrator",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

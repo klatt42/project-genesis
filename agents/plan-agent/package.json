@@ -1,0 +1,29 @@
+{
+  "name": "@genesis/plan-agent",
+  "version": "1.0.0",
+  "description": "Genesis Plan Agent - Task decomposition and execution planning",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "test": "echo 'Run: node dist/index.js <prp-file.json>'"
+  },
+  "keywords": [
+    "genesis",
+    "plan",
+    "agent",
+    "task-decomposition",
+    "execution-planning"
+  ],
+  "author": "Genesis Agent SDK",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

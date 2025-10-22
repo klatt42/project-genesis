@@ -1,0 +1,25 @@
+{
+  "name": "@genesis/parallel-executor",
+  "version": "1.0.0",
+  "description": "Parallel task execution engine for Genesis SDK",
+  "type": "module",
+  "main": "dist/parallel-executor/index.js",
+  "types": "dist/parallel-executor/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "genesis",
+    "parallel",
+    "executor",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}
