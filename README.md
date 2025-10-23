@@ -29,6 +29,18 @@ cd project-genesis
 # Skills now auto-load when relevant!
 ```
 
+### 🚀 How to Use Genesis
+
+**For comprehensive guidance**, see the **[Genesis Invocation Guide](docs/GENESIS_INVOCATION_GUIDE.md)**
+
+This complete guide covers:
+- ✅ Starting new projects with Genesis (Landing Pages, SaaS Apps, E-commerce)
+- ✅ Adding Genesis to existing projects
+- ✅ Multi-skill orchestration patterns
+- ✅ Optimal prompting for best results
+- ✅ Workflow optimization strategies
+- ✅ Troubleshooting and best practices
+
 ### Start a New Project
 
 Just tell Claude what you need:
@@ -138,9 +150,12 @@ See [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for complete guide.
 
 ## Documentation
 
+### Essential Guides
+- **[Genesis Invocation Guide](docs/GENESIS_INVOCATION_GUIDE.md)** - **Complete guide to using Genesis effectively**
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) - Start here if skills aren't working
+
 ### For Users
-- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) - **Start here if skills aren't working**
-- [Project Kickoff Checklist](docs/PROJECT_KICKOFF_CHECKLIST.md) - Start here
+- [Project Kickoff Checklist](docs/PROJECT_KICKOFF_CHECKLIST.md) - Project initialization
 - [Landing Page Template](docs/LANDING_PAGE_TEMPLATE.md) - Lead generation patterns
 - [SaaS Architecture](docs/SAAS_ARCHITECTURE.md) - Multi-tenant patterns
 - [Stack Setup Guide](docs/STACK_SETUP.md) - Integration instructions
