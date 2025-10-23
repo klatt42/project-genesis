@@ -17,8 +17,8 @@ echo "📁 Creating skills directory..."
 mkdir -p "$TARGET_DIR"
 
 # Count skills
-CORE_COUNT=$(find core -name "skill.md" 2>/dev/null | wc -l)
-SPECIALIZED_COUNT=$(find specialized -name "skill.md" 2>/dev/null | wc -l)
+CORE_COUNT=$(find core -name "SKILL.md" 2>/dev/null | wc -l)
+SPECIALIZED_COUNT=$(find specialized -name "SKILL.md" 2>/dev/null | wc -l)
 TOTAL_COUNT=$((CORE_COUNT + SPECIALIZED_COUNT))
 
 echo "📦 Found $TOTAL_COUNT skills ($CORE_COUNT core + $SPECIALIZED_COUNT specialized)"

@@ -44,3 +44,4 @@ yarn-error.log*
 .cache/
 temp/
 tmp/
+API_KEY_SETUP.md
