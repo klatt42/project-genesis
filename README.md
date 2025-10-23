@@ -109,9 +109,37 @@ npx create-next-app@latest my-saas-app --typescript --tailwind --app
 # Genesis provides architecture patterns automatically
 ```
 
+## Troubleshooting
+
+### Skills Not Working?
+
+If Genesis skills aren't invoking, you may need to update your Claude Code permissions:
+
+**Symptom**: "skill invocations are being blocked by your system configuration"
+
+**Quick Fix**:
+1. Open `~/.claude/settings.local.json`
+2. Add `"Skill"` to the `permissions.allow` array:
+```json
+{
+  "permissions": {
+    "allow": [
+      "Skill",  // ← Add this!
+      "Bash",
+      "WebFetch",
+      // ... other permissions
+    ]
+  }
+}
+```
+3. Save and test with: "Create a landing page for a restaurant"
+
+See [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for complete guide.
+
 ## Documentation
 
 ### For Users
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) - **Start here if skills aren't working**
 - [Project Kickoff Checklist](docs/PROJECT_KICKOFF_CHECKLIST.md) - Start here
 - [Landing Page Template](docs/LANDING_PAGE_TEMPLATE.md) - Lead generation patterns
 - [SaaS Architecture](docs/SAAS_ARCHITECTURE.md) - Multi-tenant patterns
@@ -211,8 +239,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Version History
 
-### v2.0 (Current) - Skills-First Architecture
-- 11 production skills (5 core + 6 specialized)
+### v2.0.1 (Current) - Skills Working & Production Ready
+- ✅ Skills invocation issue resolved
+- ✅ All 16 Genesis skills verified working
+- ✅ Multi-skill complex prompts supported
+- ✅ Troubleshooting documentation added
+- Released: October 23, 2025
+
+### v2.0 - Skills-First Architecture
+- 16 production skills (5 core + 6 specialized + 5 workflow)
 - Skills Factory for systematic generation
 - Auto-loading based on context
 - Token-efficient (2-4K vs 50K+)

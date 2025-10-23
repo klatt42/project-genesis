@@ -6,6 +6,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.1] - 2025-10-23
+
+### Fixed
+- **Skills Invocation**: Resolved blocking issue with `~/.claude/settings.local.json` permissions
+  - Root cause: Missing `"Skill"` in permissions.allow array
+  - Solution documented in `docs/TROUBLESHOOTING.md`
+  - Multi-skill complex prompts now working correctly
+  - No restart required after fix - changes take effect immediately
+
+### Added
+- **Troubleshooting Documentation**: Created `docs/TROUBLESHOOTING.md`
+  - Skills invocation debugging guide
+  - Common issues and solutions
+  - Links to relevant Genesis skills for detailed troubleshooting
+
+### Verified
+- ✅ All 16 Genesis skills visible to Claude Code
+- ✅ Single-skill prompts working
+- ✅ Multi-skill complex prompts working
+- ✅ Skills auto-invoke without blocking
+- ✅ Genesis patterns applied automatically
+
+### Testing
+- Completed multi-skill test suite
+- Verified complex project setup prompts:
+  - "Start a new landing page project with Supabase and deploy to Netlify"
+  - "Build a SaaS app with authentication, analytics, and AI features"
+  - "Create a multi-step form that captures leads to GoHighLevel with analytics"
+- Confirmed skills orchestration working
+- Tested on restaurant landing page scenario
+
+### Technical Details
+- **Discovery Date**: October 23, 2025
+- **Discovered During**: Multi-skill complex prompt testing
+- **Impact**: Previously blocked all Genesis skills from invoking
+- **Fix Location**: User-level configuration (`~/.claude/settings.local.json`)
+- **Tested On**: Claude Code, WSL/Ubuntu
+
+---
+
 ## [1.5.0] - 2025-10-19
 
 ### Added - Phase 1A: Pattern 4 Implementation & Template System
