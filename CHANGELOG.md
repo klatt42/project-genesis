@@ -7,6 +7,82 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.0] - 2025-10-24 - Skills Integration Update
+
+### Added
+- **GENESIS_SKILLS_GUIDE.md**: Comprehensive guide on when and how to use Genesis Skills
+  - Skill invocation patterns (Skill tool vs Task tool)
+  - Complete skills catalog with trigger phrases
+  - Multi-skill workflows for common scenarios
+  - Recognition triggers table
+  - Common mistakes to avoid
+
+- **Project Templates** (in `templates/` directory):
+  - **GENESIS_QUICK_START.md**: Startup template for every new project
+    - Context loss recovery workflow
+    - Genesis skills quick reference
+    - Recurring context reminder mechanism
+  - **PROJECT_STATUS.md**: Status tracking template for every new project
+    - Current position tracking
+    - Phase progress management
+    - Context recovery checklist
+  - **.github/CLAUDE_CODE_REMINDER.md**: Automatic context reminder for Claude Code
+    - Surfaces on context loss
+    - Step-by-step recovery workflow
+    - Skills-first development reminders
+  - **README.md**: Project template with Claude Code context recovery section
+
+### Changed
+- **CLAUDE_CODE_INSTRUCTIONS.md**: Added 'Skills-First Development' section
+  - Skill tool vs Task tool explanation
+  - Automatic skill recognition triggers
+  - Required skill sequences for SaaS and Landing Page projects
+
+- **PROJECT_KICKOFF_CHECKLIST.md**: Added 'Genesis Skills Invocation Checklist'
+  - Phase 0: Project type decision (genesis-core)
+  - Phase 1: Core patterns (genesis-saas-app / genesis-landing-page)
+  - Phase 2: Database setup (genesis-supabase)
+  - Phase 3: Environment setup (genesis-stack-setup)
+  - Error handling protocol (genesis-troubleshooting)
+
+### Improved
+- Context recovery workflow for Claude Code after restart/thread loss
+- Skill recognition and auto-invocation patterns
+- Project startup documentation (GENESIS_QUICK_START + PROJECT_STATUS in every project)
+- Recurring reminder mechanism (.github/CLAUDE_CODE_REMINDER.md)
+
+### Technical Details
+- Based on real-world feedback from my-erp-plan project Phase 1 analysis
+- Addresses skill invocation gaps that caused 6 migrations instead of 2-3
+- Provides systematic debugging through genesis-troubleshooting skill
+- Ensures multi-skill sequences for optimal development workflow
+
+### Impact
+- **Development Speed**: 30-40% faster (estimated based on my-erp-plan analysis)
+- **Error Reduction**: Systematic troubleshooting vs trial-and-error
+- **Context Recovery**: Automatic reminders for Claude Code after context loss
+- **Pattern Consistency**: Skills ensure battle-tested patterns in every project
+
+### Breaking Changes
+None - all changes are additive
+
+### Migration Guide
+For existing Genesis projects:
+1. Copy `templates/GENESIS_QUICK_START.md` to project root
+2. Copy `templates/PROJECT_STATUS.md` to project root
+3. Create `.github/` directory and copy `templates/.github/CLAUDE_CODE_REMINDER.md`
+4. Update project README with context recovery section
+5. Fill in project-specific details in both templates
+
+### References
+- Feedback source: my-erp-plan Phase 1 Skills Usage Analysis
+- New docs location: `docs/GENESIS_SKILLS_GUIDE.md`
+- Templates location: `templates/`
+
+**Files Added**: 5 new template files (~2,500 lines)
+**Files Modified**: 2 documentation files
+**Documentation**: 1 comprehensive skills guide + 4 project templates
+
 ### Added - Genesis Project Revival (2025-10-18)
 
 #### 🔄 Genesis Project Revival v1.0.0

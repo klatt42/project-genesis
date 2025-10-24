@@ -1,5 +1,58 @@
 # Claude Code Instructions for Genesis Projects
 
+## Skills-First Development (CRITICAL)
+
+### Skill Tool vs Task Tool
+
+**ALWAYS use Skill tool for Genesis patterns:**
+```typescript
+// ✅ CORRECT: Use Skill tool
+Skill({ command: 'genesis-saas-app' })
+
+// ❌ WRONG: Use Task tool with generic agent
+Task({
+  subagent_type: 'general-purpose',
+  description: 'Build SaaS foundation'
+})
+```
+
+### Automatic Skill Recognition
+
+Genesis Skills auto-invoke based on trigger phrases. Here are the most common:
+
+| Your Words | Auto-Invoke Skill |
+|------------|-------------------|
+| 'Genesis project', 'new project' | genesis-core |
+| 'saas', 'multi-tenant' | genesis-saas-app |
+| 'landing page', 'lead generation' | genesis-landing-page |
+| 'database', 'schema', 'RLS' | genesis-supabase |
+| 'error', 'not working', 'debug' | genesis-troubleshooting |
+
+### Required Skill Sequences
+
+**For New SaaS Project:**
+```typescript
+Skill({ command: 'genesis-core' })         // Project type
+Skill({ command: 'genesis-saas-app' })     // SaaS patterns
+Skill({ command: 'genesis-supabase' })     // Database
+Skill({ command: 'genesis-stack-setup' })  // Environment
+```
+
+**For New Landing Page:**
+```typescript
+Skill({ command: 'genesis-core' })           // Project type
+Skill({ command: 'genesis-landing-page' })   // Landing patterns
+Skill({ command: 'genesis-supabase' })       // Lead capture DB
+Skill({ command: 'genesis-stack-setup' })    // Environment
+```
+
+**On ANY Error:**
+```typescript
+Skill({ command: 'genesis-troubleshooting' })  // Systematic debugging
+```
+
+See full details in: **docs/GENESIS_SKILLS_GUIDE.md**
+
 ## Development Workflow
 
 ### Phase 1: Project Initialization

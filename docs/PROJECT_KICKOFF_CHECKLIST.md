@@ -1,5 +1,53 @@
 # Genesis Project Kickoff Checklist
 
+## Genesis Skills Invocation Checklist
+
+**CRITICAL**: Invoke skills in this order for fastest, most reliable development.
+
+### Phase 0: Project Type Decision
+- [ ] **Invoke genesis-core**
+  - Command: `Skill({ command: 'genesis-core' })`
+  - Purpose: Determine project type (SaaS vs Landing Page)
+  - Output: Project type recommendation
+
+### Phase 1: Core Patterns
+**For SaaS Projects:**
+- [ ] **Invoke genesis-saas-app**
+  - Command: `Skill({ command: 'genesis-saas-app' })`
+  - Purpose: Multi-tenant patterns, RLS templates, auth flows
+  - Output: SaaS foundation patterns
+
+**For Landing Page Projects:**
+- [ ] **Invoke genesis-landing-page**
+  - Command: `Skill({ command: 'genesis-landing-page' })`
+  - Purpose: Landing page components, lead capture, CRM integration
+  - Output: Landing page patterns
+
+### Phase 2: Database Setup
+- [ ] **Invoke genesis-supabase**
+  - Command: `Skill({ command: 'genesis-supabase' })`
+  - Purpose: Database schema, RLS policies, migration commands
+  - Output: Schema patterns and RLS templates
+
+### Phase 3: Environment Setup
+- [ ] **Invoke genesis-stack-setup**
+  - Command: `Skill({ command: 'genesis-stack-setup' })`
+  - Purpose: .env configuration, Supabase clients, credential management
+  - Output: Environment configuration patterns
+
+### During Development: Error Handling
+- [ ] **On ANY error, invoke genesis-troubleshooting**
+  - Command: `Skill({ command: 'genesis-troubleshooting' })`
+  - Purpose: Systematic debugging steps, RLS debugging, common fixes
+  - Output: Debugging workflow and SQL commands
+
+### Phase 4+: Additional Features
+- [ ] **For AI features: Invoke genesis-copilotkit**
+- [ ] **For testing: Invoke genesis-testing**
+- [ ] **For deployment: Invoke genesis-deployment**
+
+**See full skill guide**: docs/GENESIS_SKILLS_GUIDE.md
+
 ## Project Type Decision Tree
 
 ### Step 1: Identify Project Type
