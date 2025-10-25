@@ -7,6 +7,64 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.2.0] - 2025-10-25 - Auto-Restart Workflow Integration
+
+### Added
+- **Auto-restart workflow** in all Genesis skills (genesis-core, genesis-saas-app, genesis-landing-page)
+  - Restart workflow setup now part of standard project initialization
+  - Every new Genesis project includes PC reboot recovery from day one
+  - No manual RESTART_ARTIFACT.md application needed
+
+### Changed
+- **genesis-core skill** (skills/core/genesis-core/SKILL.md)
+  - Added Pattern 4: Restart Workflow Setup section
+  - Includes generate-restart-script.sh and update-existing-project.sh commands
+  - Updated command templates with restart workflow steps
+
+- **genesis-saas-app skill** (skills/core/genesis-saas-app/SKILL.md)
+  - Added Pattern 6: SaaS Project Restart Workflow section
+  - SaaS-specific PROJECT_STATUS.md customization (database, API routes, auth status)
+  - SaaS-specific GENESIS_QUICK_START.md commands (migrations, API testing)
+  - Context recovery reminders for multi-tenant patterns
+
+- **genesis-landing-page skill** (skills/core/genesis-landing-page/SKILL.md)
+  - Added Pattern 6: Landing Page Restart Workflow section
+  - Landing page-specific PROJECT_STATUS.md customization (components, integrations, performance)
+  - Landing page-specific GENESIS_QUICK_START.md commands (GHL testing, analytics, deployment)
+  - Context recovery reminders for conversion-focused patterns
+
+- **templates/README.md**
+  - Enhanced context recovery section with PC reboot recovery instructions
+  - Added link to PROJECT_RESTART.md
+  - Improved clarity for Claude Code context loading
+
+### Impact
+- **Zero manual steps**: Restart workflow automatically included in all new projects
+- **Consistency**: Same quality standards as TypeScript strict mode
+- **Developer experience**: 2-minute recovery after any PC reboot
+- **Part of Genesis quality**: Not optional, built into project foundation
+
+### Backward Compatibility
+- ✅ Existing projects without restart workflow continue to work
+- ✅ RESTART_ARTIFACT.md still available for manual application
+- ✅ No breaking changes to any Genesis patterns
+
+### Migration
+For existing projects (optional):
+```bash
+~/projects/project-genesis/templates/generate-restart-script.sh [project-name] "[project-type]"
+~/projects/project-genesis/update-existing-project.sh ~/projects/[project-name]
+# Customize PROJECT_STATUS.md and GENESIS_QUICK_START.md with project-specific sections
+```
+
+### Files Modified
+- `skills/core/genesis-core/SKILL.md` - Added restart workflow setup (Pattern 4)
+- `skills/core/genesis-saas-app/SKILL.md` - Added SaaS customization (Pattern 6)
+- `skills/core/genesis-landing-page/SKILL.md` - Added landing page customization (Pattern 6)
+- `templates/README.md` - Enhanced context recovery section with PC reboot instructions
+
+**Total Lines Added**: ~200 lines across 4 files
+
 ## [v1.1.0] - 2025-10-24 - Skills Integration Update
 
 ### Added

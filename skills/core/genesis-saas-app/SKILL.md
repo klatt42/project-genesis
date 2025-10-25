@@ -167,6 +167,87 @@ export function Providers({ children }) {
 - [ ] Environment variables secured
 - [ ] User isolation tested (try accessing other user's data)
 
+## Pattern 6: SaaS Project Restart Workflow (v1.2.0)
+
+SaaS applications include enhanced restart workflow with multi-tenant context tracking:
+
+### Customize PROJECT_STATUS.md for SaaS
+
+Include these SaaS-specific sections:
+
+```markdown
+## Current Phase
+- Foundation ✅ / Core Features 🔄 / Advanced Features ⏳ / Launch 📅
+
+## Database Status
+- Tables Created: profiles, projects, [other tables]
+- RLS Policies: ✅ All enabled and tested
+- Last Migration: [migration_file_name]
+- Migration Count: [number]
+
+## API Routes Status
+- [ ] /api/projects (CRUD operations)
+- [ ] /api/auth (authentication endpoints)
+- [ ] /api/[other routes]
+
+## Authentication Status
+- [ ] Sign up flow working
+- [ ] Login flow working
+- [ ] Protected routes enforced
+- [ ] Session management tested
+
+## Integration Status
+- Supabase: ✅ Connected (URL: [project-url])
+- Payments: ⏳ Pending / ✅ Stripe configured
+- Email: ⏳ Pending / ✅ Provider configured
+- AI Features: ⏳ Pending / ✅ CopilotKit configured
+```
+
+### Customize GENESIS_QUICK_START.md for SaaS
+
+Include SaaS-specific commands:
+
+```markdown
+## SaaS Development Quick Reference
+
+### Database Migrations
+\`\`\`bash
+# Create new migration
+npx supabase migration new [migration_name]
+
+# Apply migrations
+npx supabase db push
+
+# Reset database (DANGER)
+npx supabase db reset
+\`\`\`
+
+### API Testing
+\`\`\`bash
+# Test API routes
+curl http://localhost:3000/api/projects
+
+# Test with auth token
+curl -H "Authorization: Bearer [token]" http://localhost:3000/api/projects
+\`\`\`
+
+### Common SaaS Tasks
+- Start dev: \`npm run dev\`
+- Run tests: \`npm test\`
+- Check RLS: Review policies in Supabase dashboard
+- View logs: Check Supabase dashboard > Logs
+\`\`\`
+```
+
+### SaaS-Specific Context Recovery
+
+When context is lost, include these SaaS reminders in PROJECT_STATUS.md:
+
+- **User Isolation**: All tables use `user_id` + RLS policies
+- **Auth Pattern**: Using Supabase Auth with auth-helpers-nextjs
+- **Protected Routes**: Dashboard routes require authentication
+- **CRUD Operations**: Automatic RLS filtering (no manual user_id checks)
+
 ## Command Templates
 
 ```bash
@@ -181,6 +262,11 @@ npm install stripe
 
 # Create directories
 mkdir -p app/\(auth\)/login app/dashboard lib/api contexts
+
+# Setup restart workflow (v1.2.0+)
+~/projects/project-genesis/templates/generate-restart-script.sh [project-name] "SaaS Application"
+~/projects/project-genesis/update-existing-project.sh ~/projects/[project-name]
+# Then customize PROJECT_STATUS.md with SaaS sections above
 ```
 
 ## Integration with Other Skills

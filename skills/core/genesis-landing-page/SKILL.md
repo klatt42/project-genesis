@@ -120,6 +120,94 @@ export const metadata: Metadata = {
 - Largest Contentful Paint: <2.5s
 - Time to Interactive: <3.5s
 
+## Pattern 6: Landing Page Restart Workflow (v1.2.0)
+
+Landing pages include focused restart workflow with conversion funnel tracking:
+
+### Customize PROJECT_STATUS.md for Landing Page
+
+Include these landing page-specific sections:
+
+```markdown
+## Current Phase
+- Design ✅ / Development 🔄 / Integration ⏳ / Launch 📅
+
+## Components Status
+- [ ] Hero section (headline, CTA, image)
+- [ ] Social proof (testimonials, logos, stats)
+- [ ] Features section (3-5 key benefits)
+- [ ] Lead capture form
+- [ ] CTA sections (multiple CTAs throughout)
+- [ ] Footer
+
+## Integration Status
+- GoHighLevel: ⏳ Pending / ✅ Connected (Webhook: [url])
+- Analytics: ⏳ Pending / ✅ GA4 configured (ID: [tracking-id])
+- Email: ⏳ Pending / ✅ SendGrid/Mailchimp configured
+- Chat Widget: ⏳ Pending / ✅ Installed
+
+## Performance Metrics
+- Target Page Speed: <3s load time
+- Target FCP: <1.8s
+- Target LCP: <2.5s
+- Current Speed: [test with Lighthouse]
+- Conversion Rate Target: [percentage]
+```
+
+### Customize GENESIS_QUICK_START.md for Landing Page
+
+Include landing page-specific commands:
+
+```markdown
+## Landing Page Development Quick Reference
+
+### GoHighLevel Webhook Testing
+\`\`\`bash
+# Test GHL webhook integration
+curl -X POST http://localhost:3000/api/leads \\
+  -H "Content-Type: application/json" \\
+  -d '{"name":"Test User","email":"test@example.com","phone":"5551234567"}'
+
+# Check GHL contact created in dashboard
+\`\`\`
+
+### Analytics Setup
+\`\`\`bash
+# Google Analytics 4
+# Add GA_MEASUREMENT_ID to .env.local
+echo "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX" >> .env.local
+\`\`\`
+
+### Deployment Commands
+\`\`\`bash
+# Build for production
+npm run build
+
+# Deploy to Netlify
+netlify deploy --prod
+
+# Check live performance
+npx unlighthouse --site https://yourdomain.com
+\`\`\`
+
+### Common Landing Page Tasks
+- Start dev: \`npm run dev\`
+- Test form: Visit http://localhost:3000 and submit
+- Check GHL: Verify contact in GHL dashboard
+- Performance audit: \`npm run build && npx lighthouse http://localhost:3000\`
+\`\`\`
+```
+
+### Landing Page-Specific Context Recovery
+
+When context is lost, include these landing page reminders in PROJECT_STATUS.md:
+
+- **Conversion Focus**: Every element drives toward lead capture
+- **Form Pattern**: React Hook Form + Zod validation → API route → GHL
+- **GHL Integration**: Using REST API v1 with Bearer token auth
+- **SEO Priority**: Metadata, Open Graph, structured data
+- **Performance Target**: <3s load time for maximum conversions
+
 ## Command Templates
 
 ```bash
@@ -134,6 +222,11 @@ echo "GHL_LOCATION_ID=your_location" >> .env.local
 mkdir -p components/forms
 # Create API route
 mkdir -p app/api/leads
+
+# Setup restart workflow (v1.2.0+)
+~/projects/project-genesis/templates/generate-restart-script.sh [project-name] "Landing Page"
+~/projects/project-genesis/update-existing-project.sh ~/projects/[project-name]
+# Then customize PROJECT_STATUS.md with landing page sections above
 ```
 
 ## Integration with Other Skills
