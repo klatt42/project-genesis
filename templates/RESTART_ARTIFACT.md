@@ -5,6 +5,41 @@
 
 ---
 
+## 🎯 Two Use Cases
+
+### Case 1: Projects Already Have restart-project.sh
+**If the project already has the restart workflow (rok-copilot, my-erp-plan, serp-master):**
+
+After PC reboot, just run:
+```bash
+cd ~/projects/[project] && ./restart-project.sh
+```
+
+**No need to apply this artifact** - the restart workflow is already there!
+
+### Case 2: New Projects or Projects Without Restart Workflow
+**If the project doesn't have restart-project.sh yet:**
+
+Use this **recommended command format**:
+```
+Apply Genesis v1.1.0 restart workflow to [project-name] at [path]. It's a [type]. Create restart-project.sh, PROJECT_STATUS.md, and context recovery files.
+```
+
+**Examples:**
+- "Apply Genesis v1.1.0 restart workflow to my-new-project at ~/projects/my-new-project. It's a SaaS Application. Create restart-project.sh, PROJECT_STATUS.md, and context recovery files."
+- "Apply Genesis v1.1.0 restart workflow to landing-site at ~/projects/landing-site. It's a Landing Page. Create restart-project.sh, PROJECT_STATUS.md, and context recovery files."
+
+**Why this format?**
+- ✅ Clear: Specifies "v1.1.0 restart workflow" (not SaaS templates)
+- ✅ Explicit: Lists specific deliverables (restart-project.sh, etc.)
+- ✅ Unambiguous: Won't confuse with genesis-saas-app skill
+
+**Avoid ambiguous commands like:**
+- ❌ "Apply Genesis templates to [project]" (too vague)
+- ❌ "Apply Genesis restart templates to [project]" (could mean SaaS templates)
+
+---
+
 ## 🚨 IMPORTANT: Execute ALL Steps Below Automatically
 
 **When you receive this artifact, you MUST complete ALL 5 steps without stopping.**
