@@ -30,7 +30,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Surfaces on context loss
     - Step-by-step recovery workflow
     - Skills-first development reminders
+  - **PROJECT_RESTART.md**: PC reboot terminal restart guide
+    - Two-tab terminal organization (WSL + Claude Code)
+    - Quick start commands for both tabs
+    - Context recovery prompt templates
+    - Common post-reboot troubleshooting
+  - **generate-restart-script.sh**: Project-specific restart script generator
+    - Generates restart-project.sh for any project
+    - Customizes for SaaS or Landing Page projects
+    - Auto-generates context recovery prompts
   - **README.md**: Project template with Claude Code context recovery section
+
+- **Project Scripts**:
+  - **update-existing-project.sh**: Retrofit existing projects with v1.1.0 templates
+    - Copies all new templates to existing projects
+    - Creates .github directory structure
+    - Provides step-by-step migration instructions
 
 ### Changed
 - **CLAUDE_CODE_INSTRUCTIONS.md**: Added 'Skills-First Development' section
@@ -61,6 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Development Speed**: 30-40% faster (estimated based on my-erp-plan analysis)
 - **Error Reduction**: Systematic troubleshooting vs trial-and-error
 - **Context Recovery**: Automatic reminders for Claude Code after context loss
+- **Terminal Workflow**: 2-minute PC reboot recovery with two-tab organization
 - **Pattern Consistency**: Skills ensure battle-tested patterns in every project
 
 ### Breaking Changes
@@ -68,20 +84,30 @@ None - all changes are additive
 
 ### Migration Guide
 For existing Genesis projects:
-1. Copy `templates/GENESIS_QUICK_START.md` to project root
-2. Copy `templates/PROJECT_STATUS.md` to project root
-3. Create `.github/` directory and copy `templates/.github/CLAUDE_CODE_REMINDER.md`
-4. Update project README with context recovery section
-5. Fill in project-specific details in both templates
+1. Use the update script: `~/projects/project-genesis/update-existing-project.sh /path/to/project`
+
+   Or manually:
+   - Copy `templates/GENESIS_QUICK_START.md` to project root
+   - Copy `templates/PROJECT_STATUS.md` to project root
+   - Copy `templates/PROJECT_RESTART.md` to project root
+   - Create `.github/` directory and copy `templates/.github/CLAUDE_CODE_REMINDER.md`
+   - Update project README with context recovery section
+2. Generate restart script: `~/projects/project-genesis/templates/generate-restart-script.sh [project-name] "[project-type]"`
+3. Fill in project-specific details in all templates
+4. Test restart workflow: `./restart-project.sh`
 
 ### References
 - Feedback source: my-erp-plan Phase 1 Skills Usage Analysis
 - New docs location: `docs/GENESIS_SKILLS_GUIDE.md`
 - Templates location: `templates/`
 
-**Files Added**: 5 new template files (~2,500 lines)
+**Files Added**: 8 new files
+- 5 project templates (~2,500 lines)
+- 2 utility scripts (generate-restart-script.sh, update-existing-project.sh)
+- 1 comprehensive skills guide (~400 lines)
+
 **Files Modified**: 2 documentation files
-**Documentation**: 1 comprehensive skills guide + 4 project templates
+**Documentation**: 1 comprehensive skills guide + 6 project templates/scripts
 
 ### Added - Genesis Project Revival (2025-10-18)
 
