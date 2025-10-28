@@ -11,8 +11,13 @@ Capabilities:
 Can run multiple instances in parallel for concurrent feature development.
 """
 
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 from agents.shared.base_agent import BaseAgent, AgentStatus
+from agents.genesis_feature.core.domain_specialization import (
+    DomainType,
+    DomainSpecialization,
+    DomainSpecializationFactory
+)
 
 
 class GenesisFeatureAgent(BaseAgent):
@@ -22,21 +27,31 @@ class GenesisFeatureAgent(BaseAgent):
     Supports parallel execution - multiple instances can work on different
     features simultaneously.
 
+    NEW in v1.6.0: Domain specialization modes (Frontend, Backend, Database, Testing)
+    for enhanced pattern matching, code generation, and validation.
+
     Expected duration: 15-30 minutes per feature
     """
 
-    def __init__(self, agent_id: str = "gfa-1"):
+    def __init__(
+        self,
+        agent_id: str = "gfa-1",
+        domain_type: Optional[DomainType] = None
+    ):
         """
         Initialize GenesisFeatureAgent.
 
         Args:
             agent_id: Unique identifier for this agent instance
+            domain_type: Optional domain specialization (auto-detected if not provided)
         """
         super().__init__(
             agent_id=agent_id,
             agent_type="GenesisFeatureAgent"
         )
         self.pattern_library = None  # Will be loaded on initialization
+        self.domain_specialization: Optional[DomainSpecialization] = None
+        self.requested_domain_type = domain_type
 
     async def initialize(self):
         """
@@ -73,31 +88,49 @@ class GenesisFeatureAgent(BaseAgent):
         try:
             feature_name = task_spec.get("feature_name", "")
 
-            # Step 1: Match Genesis pattern
-            self._log(f"Step 1: Matching Genesis pattern for {feature_name}...")
+            # Step 0: Initialize domain specialization if not already done
+            if not self.domain_specialization:
+                domain_type = self.requested_domain_type or DomainSpecializationFactory.detect_domain(task_spec)
+                self.domain_specialization = DomainSpecializationFactory.create(domain_type)
+                self._log(f"Initialized domain specialization: {domain_type.value}")
+
+            # Step 1: Match Genesis pattern with domain enhancement
+            self._log(f"Step 1: Matching Genesis pattern for {feature_name} (domain: {self.domain_specialization.domain_type.value})...")
             pattern = await self._match_pattern(
                 feature_name,
                 task_spec.get("description", "")
             )
 
+            # Enhance pattern with domain-specific logic
+            pattern = self.domain_specialization.enhance_pattern_match(pattern, task_spec)
+
             # Step 2: Create implementation plan
             self._log("Step 2: Creating implementation plan...")
             plan = await self._create_plan(pattern, task_spec)
 
-            # Step 3: Generate code from pattern
+            # Step 3: Generate code from pattern with domain hints
             self._log("Step 3: Generating code from pattern...")
-            code_result = await self._generate_code(pattern, plan)
+            generation_hints = self.domain_specialization.get_code_generation_hints(pattern)
+            code_result = await self._generate_code(pattern, plan, generation_hints)
 
             # Step 4: Run automated tests
             self._log("Step 4: Running automated tests...")
             test_result = await self._run_tests(code_result)
 
-            # Step 5: Validate against checkpoints
+            # Step 5: Validate against checkpoints (general + domain-specific)
             self._log("Step 5: Validating against checkpoints...")
             validation = await self._validate_implementation(
                 code_result,
                 test_result
             )
+
+            # Step 5b: Domain-specific validation
+            self._log("Step 5b: Running domain-specific validation...")
+            domain_validation = self.domain_specialization.validate_output(
+                code_result,
+                test_result
+            )
+            validation['domain_validation'] = domain_validation
 
             # Step 6: Create task in Archon
             self._log("Step 6: Creating task in Archon...")
@@ -242,7 +275,8 @@ class GenesisFeatureAgent(BaseAgent):
     async def _generate_code(
         self,
         pattern: Dict[str, Any],
-        plan: Dict[str, Any]
+        plan: Dict[str, Any],
+        generation_hints: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         """
         Generate code from Genesis pattern and plan.
@@ -250,6 +284,7 @@ class GenesisFeatureAgent(BaseAgent):
         Args:
             pattern: Genesis pattern to use
             plan: Implementation plan
+            generation_hints: Optional domain-specific generation hints
 
         Returns:
             Dictionary with generated code and files
@@ -263,7 +298,8 @@ class GenesisFeatureAgent(BaseAgent):
         feature_spec = {
             "feature_name": plan.get("feature_name", ""),
             "description": plan.get("description", ""),
-            "custom_config": plan.get("config", {})
+            "custom_config": plan.get("config", {}),
+            "generation_hints": generation_hints or {}
         }
 
         # Generate files from pattern

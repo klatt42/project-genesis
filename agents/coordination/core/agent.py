@@ -16,6 +16,10 @@ import asyncio
 from typing import Dict, Any, List, Optional
 from datetime import datetime
 from agents.shared.base_agent import BaseAgent, AgentStatus
+from agents.genesis_feature.core.domain_specialization import (
+    DomainType,
+    DomainSpecializationFactory
+)
 
 
 class CoordinationAgent(BaseAgent):
@@ -173,18 +177,25 @@ class CoordinationAgent(BaseAgent):
             "features": []
         }
 
-        # Create feature tasks
+        # Create feature tasks with domain detection
         for i, feature in enumerate(features):
+            # Auto-detect domain for intelligent agent assignment
+            feature_task_spec = {
+                "feature_name": feature,
+                "description": f"Implement {feature}"
+            }
+            detected_domain = DomainSpecializationFactory.detect_domain(feature_task_spec)
+
             task_graph["features"].append({
                 "agent": "GenesisFeatureAgent",
                 "feature_name": feature,
+                "domain": detected_domain,  # NEW: Domain specialization
                 "dependencies": ["setup"],  # All features depend on setup
                 "parallel": True,  # Features can run in parallel
-                "task_spec": {
-                    "feature_name": feature,
-                    "description": f"Implement {feature}"
-                }
+                "task_spec": feature_task_spec
             })
+
+            self._log(f"Feature '{feature}' assigned to domain: {detected_domain.value}")
 
         return task_graph
 
@@ -302,11 +313,16 @@ class CoordinationAgent(BaseAgent):
 
         async def execute_with_limit(task_spec):
             async with semaphore:
-                agent_id = f"gfa-{len(self.managed_agents) + 1}"
-                agent = GenesisFeatureAgent(agent_id)
+                # Extract domain from task_spec
+                domain_type = task_spec.get("domain", DomainType.GENERAL)
+
+                # Create agent with domain specialization
+                agent_id = f"gfa-{domain_type.value}-{len(self.managed_agents) + 1}"
+                agent = GenesisFeatureAgent(agent_id, domain_type=domain_type)
                 await agent.initialize()
 
                 self.managed_agents[agent_id] = agent
+                self._log(f"Spawned {agent_id} for {task_spec.get('feature_name', 'unknown')}")
 
                 # Add project_id to task_spec
                 if project_id:
